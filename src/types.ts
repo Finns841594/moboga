@@ -2,13 +2,18 @@
 type StoryObj = {
   id: number
   storyname: string,
-  labels:[{magic:string[]},{monsters:string[]}],
+  labels: Label[],
   books: MediaObj[]
   movies: MediaObj[],
   games: MediaObj[],
   rating: number
 }
 
+type Label = {
+  id: string,
+  name: string,
+  voted_user: string[]
+}
 
 type MediaObj = {
   id: number

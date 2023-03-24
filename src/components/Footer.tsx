@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <>
-    <h1>There!</h1>
+    <h1>Bye!</h1>
     </>
   )
 }

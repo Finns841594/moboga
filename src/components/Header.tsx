@@ -1,7 +1,7 @@
 export const Header = () => {
   return (
     <>
-    <h1>Hello!</h1>
+    <h1>Moboga!</h1>
     </>
   )
 }
