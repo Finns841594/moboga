@@ -6,8 +6,6 @@ import { LabelBubble } from './components/LabelBubble'
 import { StoryBubble } from './components/StoryBubble'
 
 export const Map = () => {
-  
-
   return (
     <>
       <Header />

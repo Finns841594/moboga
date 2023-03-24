@@ -3,9 +3,9 @@ type StoryObj = {
   id: number
   storyname: string,
   labels: Label[],
-  books: MediaObj[]
-  movies: MediaObj[],
-  games: MediaObj[],
+  books: MediaInStory[]
+  movies: MediaInStory[],
+  games: MediaInStory[],
   rating: number
 }
 
@@ -13,6 +13,11 @@ type Label = {
   id: string,
   name: string,
   voted_user: string[]
+}
+
+type MediaInStory = {
+  oid: string,
+  name: string
 }
 
 type MediaObj = {
@@ -25,5 +30,5 @@ type MediaObj = {
   voteNumberFromAPI: number
 }
 
-export type { StoryObj, MediaObj }
+export type { StoryObj, MediaObj, Label, MediaInStory }
 // const bookRating = books.reduce((acc, cur), cur.ratingFromAPI + acc)

@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react"
 import { StoryObj } from "../types"
 import { LabelBubble } from "./LabelBubble"
+// import dotenv from 'dotenv'
+
+// dotenv.config();
+// const backEndHost = process.env.BE_HOST
+// console.log('😘', backEndHost)
 
 interface IStoryBubbleProp {storyId : string, next: boolean } 
 
@@ -23,7 +28,7 @@ export const StoryBubble = ({storyId, next}:IStoryBubbleProp) => {
         <h4>{story!.storyname}</h4>
         <div>
           { (story.games.length > 0) ? (
-            <button><a href="./details" >games</a></button>
+            <button><a href={`./details/games/${story.id}`} >games</a></button>
           ) : null }
           { (story.movies.length > 0) ? (
             <button>movies</button>
