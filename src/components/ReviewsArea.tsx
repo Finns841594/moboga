@@ -1,7 +1,5 @@
 const ReviewsArea = () => {
-  return (
-    <div>ReviewsArea</div>
-  )
-}
+	return <div>Last reviews:</div>;
+};
 
-export default ReviewsArea
+export default ReviewsArea;
