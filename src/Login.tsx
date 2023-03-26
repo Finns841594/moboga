@@ -1,20 +1,14 @@
-import axios from 'axios';
 import { SyntheticEvent, useState } from 'react';
+import useAuth from './useAuth';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const { login, invalidInput } = useAuth();
 
-	const handleSubmit = (event: SyntheticEvent) => {
+	const handleSubmit = async (event: SyntheticEvent) => {
 		event.preventDefault();
-		axios
-			.post('http://localhost:3000/api/login', {
-				email,
-				password,
-			})
-			.then(res => console.log(res.data));
-		setEmail('');
-		setPassword('');
+		login(email, password);
 	};
 
 	return (
@@ -24,6 +18,7 @@ export const Login = () => {
 				<label>
 					Email:
 					<input
+						required
 						type="email"
 						value={email}
 						onChange={e => {
@@ -36,6 +31,7 @@ export const Login = () => {
 				<label>
 					Password:
 					<input
+						required
 						type="password"
 						value={password}
 						onChange={e => {
@@ -44,7 +40,7 @@ export const Login = () => {
 					/>
 				</label>
 				<br />
-
+				{invalidInput && <p>{invalidInput}</p>}
 				<button type="submit">Login!</button>
 			</form>
 		</div>
