@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Bubbles } from './components/Bubbles'
+import { BubblesDiagram } from './components/BubblesDiagram'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
-import { LabelBubble } from './components/LabelBubble'
-import { StoryBubble } from './components/StoryBubble'
+
 
 export const Map = () => {
   return (
     <>
       <Header />
-      <Bubbles />
+      {/* <Bubbles /> */}
+      <BubblesDiagram />
       <Footer />
     </>
   )
