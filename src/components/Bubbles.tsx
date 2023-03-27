@@ -4,18 +4,22 @@ import { StoryBubble } from "./StoryBubble"
 export const Bubbles = () => {
   return (
     <>
-      <StoryBubble storyId={'2'} next={true} />
-      <ul>
-        <li>
-          <LabelBubble labelName="survival" />
-          <ul>
-            <li><StoryBubble storyId={'3'} next={true} /></li>
-            <li><StoryBubble storyId={'4'} next={true} /></li>
-          </ul>
-          </li>
-        <li><LabelBubble labelName="post_apocalyptic" /></li>
-        <li><LabelBubble labelName="dystopia" /></li>
+    <ul className="maptree">
+      <li><div className="bubble1"><StoryBubble storyId={'2'} next={true} /></div></li>
+      <ul className="maptree">
+        <li><div className="bubble2"><LabelBubble labelName="survival" /></div></li>
+        <li><div className="bubble3"><LabelBubble labelName="post_apocalyptic" /></div></li>
+        <li><div className="bubble4"><LabelBubble labelName="dystopia" /></div></li>
       </ul>
+    </ul>
+          
+      <ul>
+        <li><StoryBubble storyId={'3'} next={true} /></li>
+        <li><StoryBubble storyId={'4'} next={true} /></li>
+      </ul>
+          
+        
+        
     </>
   )
 }
