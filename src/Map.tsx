@@ -9,8 +9,8 @@ export const Map = () => {
   return (
     <>
       <Header />
-      {/* <Bubbles /> */}
-      <BubblesDiagram />
+      <Bubbles />
+      {/* <BubblesDiagram /> */}
       <Footer />
     </>
   )

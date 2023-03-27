@@ -34,7 +34,7 @@ export const Details = () => {
 			{story ? <Labels labels={story.labels} /> : null}
 			{story && params.media ? (
 				<>
-					<MediaCards medias={story['games']} />
+					<MediaCards medias={story['books']} />
 				</>
 			) : null}
 			<ReviewsArea />

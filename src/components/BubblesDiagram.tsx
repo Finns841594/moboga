@@ -12,7 +12,7 @@ export const BubblesDiagram = () => {
     initDiagram();
   }, []);
 
-  let bubbleDiagram
+  let bubbleDiagram:any
 
   const initDiagram = () => {
      bubbleDiagram = $(go.Diagram, 'bubbleDiagram', {
