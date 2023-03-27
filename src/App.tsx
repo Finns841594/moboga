@@ -11,10 +11,7 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/details/:media/:id" element={<Details />}></Route>
-			<Route
-				path="details/:media/:id/reviews/:mediaId"
-				element={<ReviewForm />}
-			></Route>
+			<Route path="/reviews/:mediaId" element={<ReviewForm />}></Route>
 			<Route path="/register" element={<Signup />}></Route>
 			<Route path="/login" element={<Login />}></Route>
 			<Route path="/map" element={<Map />}></Route>

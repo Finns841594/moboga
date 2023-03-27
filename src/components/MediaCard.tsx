@@ -29,7 +29,7 @@ const MediaCard = ({ mediaOid }: IMediaCardProp) => {
 					<img src={media.imgurl} className="img" />
 					<p>{media.description}</p>
 					<h5>
-						Add a review<Link to={`./reviews/${mediaOid}`}>+</Link>
+						Add a review<Link to={`/reviews/${mediaOid}`}>+</Link>
 					</h5>
 				</>
 			) : null}

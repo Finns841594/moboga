@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useAuth from './useAuth';
 
 export const Login = () => {
@@ -41,8 +42,11 @@ export const Login = () => {
 				</label>
 				<br />
 				{invalidInput && <p>{invalidInput}</p>}
-				<button type="submit">Login!</button>
+				<button type="submit">Login</button>
 			</form>
+			<p>
+				If you don't have an account <Link to={'/register'}>Register here</Link>
+			</p>
 		</div>
 	);
 };

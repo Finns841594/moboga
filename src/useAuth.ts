@@ -2,10 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+type UserInfo = {
+	userId: string;
+	email: string;
+	name: string;
+	lastName: string;
+};
+
 function useAuth() {
 	const navigate = useNavigate();
 	const [authenticated, setAuthenticated] = useState(false);
 	const [invalidInput, setInvalidInput] = useState('');
+	const [user, setUser] = useState<UserInfo>();
 
 	const login = async (email: string, password: string) => {
 		try {
@@ -14,7 +22,6 @@ function useAuth() {
 				password,
 			});
 			localStorage.setItem('token', res.data);
-			// localStorage.setItem('userId', )
 			setAuthenticated(true);
 			navigate('/map');
 			console.log('LOG IN SUCCESSFULLY!!!! 🥳');
@@ -27,14 +34,14 @@ function useAuth() {
 	const logout = () => {
 		localStorage.removeItem('token');
 		setAuthenticated(false);
-		navigate('/login');
+		navigate('/register');
 	};
 
 	const signUp = async (
 		firstName: string,
 		lastName: string,
-		email: any,
-		password: any
+		email: string,
+		password: string
 	) => {
 		try {
 			const response = await axios
@@ -45,10 +52,14 @@ function useAuth() {
 					password,
 				})
 				.then(res => res);
-			localStorage.setItem('token', response.data);
-			setAuthenticated(true);
-			navigate(-1);
-			console.log('REGISTER SUCCESSFULLY!!!! 🥳');
+			if (response.status === 200) {
+				localStorage.setItem('token', response.data);
+				setAuthenticated(true);
+				navigate('/map');
+				console.log('REGISTER SUCCESSFULLY!!!! 🥳');
+			} else {
+				console.log('error while register');
+			}
 		} catch (error: any) {
 			console.log(error.response);
 			setInvalidInput(error.response.data.message);
@@ -56,7 +67,20 @@ function useAuth() {
 	};
 
 	const isAuthenticated = () => {
+		//in progress
 		const token = localStorage.getItem('token');
+		axios
+			.get('http://localhost:3000/api/users', {
+				headers: {
+					Authorization: `token ${token}`,
+				},
+			})
+			.then(res => {
+				setUser(res.data);
+			})
+			.catch(error => {
+				console.error(error);
+			});
 		if (token) {
 			setAuthenticated(true);
 		} else {
@@ -71,6 +95,7 @@ function useAuth() {
 		isAuthenticated,
 		invalidInput,
 		signUp,
+		user,
 	};
 }
 

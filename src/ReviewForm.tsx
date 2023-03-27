@@ -10,7 +10,7 @@ export const ReviewForm = () => {
 	const [media, setMedia] = useState<MediaObj>();
 	const [content, setContent] = useState('');
 	const [rating, setRating] = useState('');
-	const { authenticated, isAuthenticated } = useAuth();
+	const { authenticated, isAuthenticated, user } = useAuth();
 
 	if (params.mediaId) {
 		const getMedia = async () => {
@@ -33,8 +33,12 @@ export const ReviewForm = () => {
 					content,
 					rating,
 					mediaId: params.mediaId,
+					name: media?.name,
+					userId: user?.userId,
 				})
 				.then(res => res);
+			setContent('');
+			setRating('');
 			console.log('REVIEW CREATED!! 🥳', response);
 		} catch (error: any) {
 			console.log(error);
