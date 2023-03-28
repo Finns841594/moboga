@@ -17,6 +17,7 @@ export const Details = () => {
 			const result = fetch(
 				`http://localhost:3000/api/stories/${params.id}`
 			).then(res => res.json());
+			console.log('🤔🤔🤔🤔🤔', result)
 			return result;
 		};
 
@@ -28,10 +29,10 @@ export const Details = () => {
 	return (
 		<>
 			<Header />
-			<p>Details</p>
-			<p>{params.id}</p>
-			<p>{params.media}</p>
-			{story ? <Labels labels={story.labels} /> : null}
+			{story ? (<>
+			<h1>{story.storyname}</h1>
+			<Labels labels={story.labels} />
+			</>) : null}
 			{story && params.media ? ( 
 				params.media === 'movies' ? (
 				<>

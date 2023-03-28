@@ -39,15 +39,7 @@
   border-radius: 10px;
 }
 
-.media__cards-area {
-  display: flex;
-  flex-direction: row;
-}
 
-.media__card {
-  width: 300px;
-  margin-inline: 5px;
-}
 
 #bubbleDiagram {
   background-color: white; 

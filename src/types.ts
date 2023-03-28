@@ -1,5 +1,5 @@
 type StoryObj = {
-	id: number;
+	id: string;
 	storyname: string;
 	labels: Label[];
 	books: MediaInStory[];
@@ -20,7 +20,7 @@ type MediaInStory = {
 };
 
 type MediaObj = {
-	id: number;
+	id: string;
 	name: string;
 	description: string;
 	type: string;
@@ -28,7 +28,14 @@ type MediaObj = {
 	imgurl: string;
 	ratingFromAPI: number;
 	voteNumberFromAPI: number;
-};
+}
+
+type UserInfo = {
+	userId: string;
+	email: string;
+	name: string;
+	lastName: string;
+};;
 
 type User = {
 	id: string;
@@ -44,5 +51,5 @@ type Reviewtype = {
 	rating: string;
 };
 
-export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype };
+export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype, UserInfo };
 // const bookRating = books.reduce((acc, cur), cur.ratingFromAPI + acc)

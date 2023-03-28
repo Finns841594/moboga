@@ -1,5 +1,6 @@
 import MediaCard from "./MediaCard"
 import { MediaInStory } from "../types"
+import './MediaCards.css'
 
 
 interface IMediaCardsProp {medias: MediaInStory[]}
