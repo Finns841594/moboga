@@ -7,7 +7,6 @@ interface IMediaCardProp {
 }
 
 const MediaCard = ({ mediaOid }: IMediaCardProp) => {
-	console.log('🥸🥸🥸', mediaOid);
 	const [media, setMedia] = useState<MediaObj>();
 
 	const getStories = () => {

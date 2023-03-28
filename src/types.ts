@@ -38,5 +38,11 @@ type User = {
 	hashedPassword: string;
 };
 
-export type { StoryObj, MediaObj, Label, MediaInStory, User };
+type Reviewtype = {
+	id: string;
+	content: string;
+	rating: string;
+};
+
+export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype };
 // const bookRating = books.reduce((acc, cur), cur.ratingFromAPI + acc)
