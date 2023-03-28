@@ -32,11 +32,19 @@ export const Details = () => {
 			<p>{params.id}</p>
 			<p>{params.media}</p>
 			{story ? <Labels labels={story.labels} /> : null}
-			{story && params.media ? (
+			{story && params.media ? ( 
+				params.media === 'movies' ? (
+				<>
+					<MediaCards medias={story['movies']} />
+				</>) :
+				params.media === 'books' ? (
 				<>
 					<MediaCards medias={story['books']} />
+				</>) : (
+				<>
+					<MediaCards medias={story['games']} />
 				</>
-			) : null}
+			)) : null}
 			<ReviewsArea />
 			<Footer />
 		</>

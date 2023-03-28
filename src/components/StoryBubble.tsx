@@ -31,10 +31,10 @@ export const StoryBubble = ({storyId, next}:IStoryBubbleProp) => {
             <button><a href={`./details/games/${story.id}`} >games</a></button>
           ) : null }
           { (story.movies.length > 0) ? (
-            <button>movies</button>
+            <button><a href={`./details/movies/${story.id}`} >movies</a></button>
           ) : null }
           { (story.books.length > 0) ? (
-            <button>books</button>
+            <button><a href={`./details/books/${story.id}`} >books</a></button>
           ) : null }
         </div>
         {/* <ul>

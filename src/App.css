@@ -1,28 +1,26 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.story-bubble {
+/* .story-bubble {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   position: absolute;
   background-color: palegreen;
-  /* animation:floating 6s ease-in-out infinite; */
-}
+} */
 
-.label-bubble {
+/* .label-bubble {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   position: absolute;
   background-color: palevioletred;
-}
+} */
 
-@keyframes floating {
+/* @keyframes floating {
   0% {
     transform: translate(0, 0);
   }
@@ -32,7 +30,7 @@
   100% {
     transform: translate(0, 0);
   }
-}
+} */
 
 .img {
   width: 300px;
@@ -70,10 +68,81 @@
 }
 
 /* feng area */
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid #eaeaea;
+}
+.header-username {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
 
+.header-login-username {
+  margin-right: 20px;
+}
 
+.search_bar-and-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.search_searchbar {
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  padding: 0 10px;
+}
+
+.cards-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.media-card {
+  width: 150px;
+  height: 400px;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.media-card:hover {
+  width:300px;
+  transition: width 0.2s ease-in-out;
+}
+.media-card-header {
+  cursor: poiner;
+}
+
+.media-card-list {
+  list-style: none;
+  text-align: left;
+  max-height: 0px;
+  overflow: hidden;
+  cursor:pointer;
+  transition:max-height 0.3s ease;
+}
+
+.media-card-list.open {
+  max-height: 300px;
+
+}
 /* feng area */
-
 
 /* mar area */
 

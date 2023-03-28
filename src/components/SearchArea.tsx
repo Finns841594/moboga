@@ -1,7 +1,11 @@
 export const SearchArea = () => {
   return (
-    <>
-    <h1>Hello!</h1>
-    </>
+    <section className="search">
+      <h2>Find a story?</h2>
+      <div className="search_bar-and-button">
+        <input type='text' className="search_searchbar" ></input>
+        <button>Search</button>
+      </div>
+    </section>
   )
 }
