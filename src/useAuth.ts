@@ -96,6 +96,7 @@ function useAuth() {
 		invalidInput,
 		signUp,
 		user,
+		setInvalidInput,
 	};
 }
 

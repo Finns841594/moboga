@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Bubbles } from './components/Bubbles';
 import { BubblesDiagram } from './components/BubblesDiagram';
 import { Footer } from './components/Footer';
@@ -8,8 +7,8 @@ export const Map = () => {
 	return (
 		<>
 			<Header />
-			{/* <Bubbles /> */}
-			<BubblesDiagram />
+			<Bubbles />
+			{/* <BubblesDiagram /> */}
 			<Footer />
 		</>
 	);
