@@ -28,13 +28,13 @@ export const StoryBubble = ({storyId, next}:IStoryBubbleProp) => {
         <h4>{story!.storyname}</h4>
         <div>
           { (story.games.length > 0) ? (
-            <button><a href={`./details/games/${story.id}`} >games</a></button>
+            <a href={`./details/games/${story.id}`} ><button>games</button></a>
           ) : null }
           { (story.movies.length > 0) ? (
-            <button><a href={`./details/movies/${story.id}`} >movies</a></button>
+            <a href={`./details/movies/${story.id}`} ><button>movies</button></a>
           ) : null }
           { (story.books.length > 0) ? (
-            <button><a href={`./details/books/${story.id}`} >books</a></button>
+            <a href={`./details/books/${story.id}`} ><button>books</button></a>
           ) : null }
         </div>
         {/* <ul>
