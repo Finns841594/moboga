@@ -2,13 +2,12 @@ import axios from 'axios';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../useAuth';
-import { Header } from './Header';
 
 interface IReviewFormProp {
 	update: () => void;
 }
 
-export const ReviewForm = ({update}:IReviewFormProp) => {
+export const ReviewForm = ({ update }: IReviewFormProp) => {
 	const params = useParams();
 	const [content, setContent] = useState('');
 	const [rating, setRating] = useState('');
@@ -34,38 +33,37 @@ export const ReviewForm = ({update}:IReviewFormProp) => {
 			console.log(error);
 		}
 	};
-useEffect(() => {isAuthenticated()}, [])
+	useEffect(() => {
+		isAuthenticated();
+	}, []);
 	return (
 		<>
 			{authenticated && (
 				<form onSubmit={handleSubmit}>
-					<h2 style={{textAlign:'left'}}>Add a new review:</h2>
-					<div className='add-review-area'>
+					<h2 style={{ textAlign: 'left' }}>Add a new review:</h2>
+					<div className="add-review-area">
 						<textarea
-						required
-						placeholder="Write here your review"
-						value={content}
-						onChange={e => setContent(e.target.value)}
-						className="review__text-input"
-					/>
-					<div>
-						<label htmlFor='rating'>Rating:</label>
-						<input
-							id='rating'
-							type="number"
 							required
-							max={10}
-							min={0}
-							value={rating}
-							onChange={e => setRating(e.target.value)}
-							className="review__rate-input"
+							placeholder="Write here your review"
+							value={content}
+							onChange={e => setContent(e.target.value)}
+							className="review__text-input"
 						/>
+						<div>
+							<label htmlFor="rating">Rating:</label>
+							<input
+								id="rating"
+								type="number"
+								required
+								max={10}
+								min={0}
+								value={rating}
+								onChange={e => setRating(e.target.value)}
+								className="review__rate-input"
+							/>
+						</div>
+						<button type="submit">Add</button>
 					</div>
-					
-					
-					<button type="submit">Add</button>
-					</div>
-							
 				</form>
 			)}
 		</>

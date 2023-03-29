@@ -5,7 +5,6 @@ import Home from './Home';
 import Map from './Map';
 import { Signup } from './Signup';
 import { Login } from './Login';
-import { ReviewForm } from './components/ReviewForm';
 
 function App() {
 	return (
