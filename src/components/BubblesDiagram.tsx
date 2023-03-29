@@ -2,19 +2,24 @@ import * as go from 'gojs';
 import { useEffect, useState } from 'react';
 import { Label, StoryObj } from '../types';
 
+interface IBubbleDiagramProp {
+	beginningStoryId: string;
+	beginningStoryName: string;
+	beginningStoryLabels: Label[];
+}
 
-interface IBubbleDiagramProp {beginningStoryId: string, beginningStoryName:string, beginningStoryLabels:Label[]}
-
-export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningStoryLabels}:IBubbleDiagramProp) => {
-
+export const BubblesDiagram = ({
+	beginningStoryId,
+	beginningStoryName,
+	beginningStoryLabels,
+}: IBubbleDiagramProp) => {
 	// ----------------------------   fengs area  ----------------------------
-
 
 	useEffect(() => {
 		initDiagram();
 	}, []);
 
-	console.log('👀 beginningStoryLabels', beginningStoryLabels)
+	console.log('👀 beginningStoryLabels', beginningStoryLabels);
 	// ----------------------------   fengs area end ----------------------------
 
 	// ----------------------------   bubble diagram area  ----------------------------
@@ -32,8 +37,6 @@ export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningS
 		'#0277BD',
 		'#01579B',
 	];
-
-	
 
 	let bubbleDiagram: any;
 
@@ -71,7 +74,11 @@ export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningS
 				),
 				$(
 					go.TextBlock,
-					{ font: '12pt sans-serif', margin: 5, click: (e, obj) => window.open('./details/games/2') },
+					{
+						font: '12pt sans-serif',
+						margin: 5,
+						click: (e: any, obj: any) => window.open('./details/games/2'),
+					},
 					new go.Binding('text', 'key')
 				)
 			),
@@ -142,7 +149,7 @@ export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningS
 			grandparent = grandparent.findTreeParentNode();
 		}
 
-		let childData = beginningStoryLabels
+		let childData = beginningStoryLabels;
 		for (var i = 0; i < numchildren; i++) {
 			var childdata = {
 				key: childData[i].name || 'Fail to fetch data',
@@ -159,8 +166,8 @@ export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningS
 	};
 
 	const expandAtRandom = () => {
-		var eligibleNodes = [];
-		bubbleDiagram.nodes.each(n => {
+		var eligibleNodes: any[] = [];
+		bubbleDiagram.nodes.each((n: any) => {
 			if (!n.isTreeExpanded) eligibleNodes.push(n);
 		});
 		var node = eligibleNodes[Math.floor(Math.random() * eligibleNodes.length)];

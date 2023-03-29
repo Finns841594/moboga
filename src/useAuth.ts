@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const backendHost = import.meta.env.VITE_BE_HOST;
+
 type UserInfo = {
 	userId: string;
 	email: string;
@@ -17,7 +19,7 @@ function useAuth() {
 
 	const login = async (email: string, password: string) => {
 		try {
-			const res = await axios.post('http://localhost:3000/api/login', {
+			const res = await axios.post(backendHost + 'api/login', {
 				email,
 				password,
 			});
@@ -45,7 +47,7 @@ function useAuth() {
 	) => {
 		try {
 			const response = await axios
-				.post('http://localhost:3000/api/users', {
+				.post(backendHost + 'api/users', {
 					firstName,
 					lastName,
 					email,
@@ -70,7 +72,7 @@ function useAuth() {
 		//in progress
 		const token = localStorage.getItem('token');
 		axios
-			.get('http://localhost:3000/api/users', {
+			.get(backendHost + 'api/users', {
 				headers: {
 					Authorization: `token ${token}`,
 				},

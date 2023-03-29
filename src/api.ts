@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+const backendHost = import.meta.env.VITE_BE_HOST;
 export const getReviews = async (userId: string) => {
 	try {
 		const response = await axios
-			.get(`http://localhost:3000/api/reviews`, {
+			.get(backendHost + `api/reviews`, {
 				headers: { 'Content-Type': 'application/json' },
 				data: { userId },
 			})
@@ -17,7 +18,7 @@ export const getReviews = async (userId: string) => {
 export const getReviewsByStoryId = async (storyId: string) => {
 	try {
 		const response = await axios
-			.get(`http://localhost:3000/api/reviews_by_story_id/${storyId}`)
+			.get(backendHost + `api/reviews_by_story_id/${storyId}`)
 			.then(res => res.data);
 		console.log(response, 'response from getting reviews by story id 🥲');
 		return response;
@@ -28,7 +29,7 @@ export const getReviewsByStoryId = async (storyId: string) => {
 
 export const deleteReview = async (reviewId: string) => {
 	await axios
-		.delete('http://localhost:3000/api/reviews', {
+		.delete(backendHost + 'api/reviews', {
 			headers: { 'Content-Type': 'application/json' },
 			data: { reviewId },
 		})

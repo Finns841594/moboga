@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../useAuth';
+const backendHost = import.meta.env.VITE_BE_HOST;
 
 interface IReviewFormProp {
 	update: () => void;
@@ -17,7 +18,7 @@ export const ReviewForm = ({ update }: IReviewFormProp) => {
 		e.preventDefault();
 		try {
 			const response = await axios
-				.post('http://localhost:3000/api/reviews', {
+				.post(backendHost + 'api/reviews', {
 					userId: user?.userId,
 					userName: user?.name,
 					content,
