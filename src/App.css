@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
+	max-width: 1280px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 /* .story-bubble {
@@ -33,21 +33,19 @@
 } */
 
 .img {
-  width: 300px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
+	width: 300px;
+	height: 400px;
+	object-fit: cover;
+	border-radius: 10px;
 }
 
-
-
 #bubbleDiagram {
-  background-color: white; 
-  border: 1px solid black; 
-  width: 800px; 
-  height: 700px; 
-  position: relative; 
-  cursor: auto;
+	background-color: white;
+	border: 1px solid black;
+	width: 800px;
+	height: 700px;
+	position: relative;
+	cursor: auto;
 }
 
 .canvas {
@@ -61,84 +59,88 @@
 }
 
 /* feng area */
+
 .header {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 2px solid #eaeaea;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	padding: 1rem 0;
+	border-bottom: 2px solid #eaeaea;
+	width: 1000px;
+	margin-bottom: 70px;
+	align-items: center;
 }
 .header-username {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
 }
 
 .header-login-username {
-  margin-right: 20px;
+	margin-right: 20px;
 }
 
-.search_bar-and-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.search-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 }
 
 .search_searchbar {
-  width: 300px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #eaeaea;
-  padding: 0 10px;
+	width: 300px;
+	height: 35px;
+	border-radius: 10px;
+	border: 1px solid #eaeaea;
+	margin: 0 10px;
+	font-size: larger;
 }
 
 .cards-area {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	width: 1000px;
 }
 
 .media-card {
-  width: 150px;
-  height: 400px;
-  border-radius: 10px;
-  border: 1px solid #eaeaea;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+	width: 150px;
+	height: 400px;
+	border-radius: 10px;
+	border: 1px solid #eaeaea;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .media-card:hover {
-  width:300px;
-  transition: width 0.2s ease-in-out;
+	width: 300px;
+	transition: width 0.2s ease-in-out;
 }
 .media-card-header {
-  cursor: poiner;
+	cursor: poiner;
 }
 
 .media-card-list {
-  list-style: none;
-  text-align: left;
-  max-height: 0px;
-  overflow: hidden;
-  cursor:pointer;
-  transition:max-height 0.3s ease;
+	list-style: none;
+	text-align: left;
+	max-height: 0px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: max-height 0.3s ease;
 }
 
 .media-card-list.open {
-  max-height: 300px;
-
+	max-height: 300px;
 }
-/* feng area */
 
-/* mar area */
-
-
-
-/* mar area */
+.invalid-input {
+	color: rgb(241, 44, 44);
+	font-size: 14px;
+	margin: 0px;
+	padding: 0;
+}

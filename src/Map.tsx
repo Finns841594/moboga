@@ -26,7 +26,6 @@ export const Map = () => {
 			<Header />
 			{/* <Bubbles /> */}
       {story ? (<><BubblesDiagram beginningStoryId={story.id} beginningStoryName={story.storyname} beginningStoryLabels={story.labels} /></>):(<p>Loading</p>)}
-			
 			<Footer />
 		</>
 	);

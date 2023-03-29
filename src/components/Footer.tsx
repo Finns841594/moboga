@@ -14,18 +14,20 @@ export const Footer = () => {
 					Data provided by the Google Books API, the MovieDB API and Rawg API.
 				</p>
 				<p>Contributers:</p>
-				<div className="git-hub__container">
-					<a href="https://github.com/Finns841594">
-						<img className="github-logo" src={GithubLogo} />
-					</a>
-					<a href="https://github.com/mariana-molina">
-						<img className="github-logo" src={GithubLogo} />
-					</a>
+				<div className="github__container">
+					<span className="github-profile-container">
+						<a href="https://github.com/Finns841594">
+							<img className="github-logo" src={GithubLogo} />
+						</a>
+						<p className="">Feng</p>
+					</span>
+					<span className="github-profile-container">
+						<a href="https://github.com/mariana-molina">
+							<img className="github-logo" src={GithubLogo} />
+						</a>
+						<p className="">Mariana</p>
+					</span>
 				</div>
-				<span className="github-text-container">
-					<p className="github-text__item">Feng</p>
-					<p className="github-text__item">Mariana</p>
-				</span>
 			</div>
 		</>
 	);

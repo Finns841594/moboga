@@ -8,26 +8,22 @@ export const Header = () => {
 	}, []);
 	return (
 		<>
-		<div className='header' >
-			<h1 className='header-title'><a href='/'>Moboga</a></h1>
-
+			<div className="header">
+				<h1 className="header-title">
+					<a href="/">Moboga</a>
+				</h1>
 
 				{authenticated ? (
-					<div className='header-username'>
-						<h3 className='header-login-username'>Hi, {user?.name}!</h3>
-						<div onClick={() => logout()}>Log out</div>
+					<div className="header-username">
+						<h3 className="header-login-username">Hi, {user?.name}!</h3>
+						<a onClick={() => logout()}>Log out</a>
 					</div>
 				) : (
-					<div className='header-username'>	
-						<h3 className='header-login-username'>Hi!</h3>
-						<a href="/login">Register/Login</a>
+					<div className="header-username">
+						<a href="/register">Register/Login</a>
 					</div>
 				)}
-
-
-		</div>
-			
-			
+			</div>
 		</>
 	);
 };
