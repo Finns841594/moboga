@@ -40,22 +40,21 @@
 }
 
 #bubbleDiagram {
-	background-color: white;
-	border: 1px solid black;
-	width: 800px;
+	background-color: #242424;
+	width: 1000px;
 	height: 700px;
 	position: relative;
 	cursor: auto;
 }
 
 .canvas {
-  position: absolute; 
-  top: 0px; 
-  left: 0px; 
-  z-index: 2; 
-  touch-action: none; 
-  cursor: auto;
-  background-color: black;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	touch-action: none;
+	cursor: auto;
+	background-color: black;
 }
 
 /* feng area */
@@ -116,10 +115,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	transition: width 0.3s ease-in-out;
 }
 .media-card:hover {
 	width: 300px;
-	transition: width 0.2s ease-in-out;
+	transition: width 0.3s ease-in-out;
 }
 .media-card-header {
 	cursor: poiner;
@@ -131,9 +131,12 @@
 	max-height: 0px;
 	overflow: hidden;
 	cursor: pointer;
+	font-size: larger;
 	transition: max-height 0.3s ease;
 }
-
+.media-card-item a {
+	color: white;
+}
 .media-card-list.open {
 	max-height: 300px;
 }

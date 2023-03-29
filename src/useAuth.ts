@@ -23,7 +23,7 @@ function useAuth() {
 			});
 			localStorage.setItem('token', res.data);
 			setAuthenticated(true);
-			navigate('/map');
+			navigate(-2);
 			console.log('LOG IN SUCCESSFULLY!!!! 🥳');
 		} catch (error: any) {
 			console.error(error.response.data);
@@ -55,7 +55,7 @@ function useAuth() {
 			if (response.status === 200) {
 				localStorage.setItem('token', response.data);
 				setAuthenticated(true);
-				navigate('/map');
+				navigate(-1);
 				console.log('REGISTER SUCCESSFULLY!!!! 🥳');
 			} else {
 				console.log('error while register');
