@@ -1,9 +1,23 @@
 import * as go from 'gojs';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import { Label, StoryObj } from '../types';
 
-export const BubblesDiagram = () => {
-	const diagramRef = useRef<HTMLDivElement>(null);
 
+interface IBubbleDiagramProp {beginningStoryId: string, beginningStoryName:string, beginningStoryLabels:Label[]}
+
+export const BubblesDiagram = ({beginningStoryId, beginningStoryName, beginningStoryLabels}:IBubbleDiagramProp) => {
+
+	// ----------------------------   fengs area  ----------------------------
+
+
+	useEffect(() => {
+		initDiagram();
+	}, []);
+
+	console.log('👀 beginningStoryLabels', beginningStoryLabels)
+	// ----------------------------   fengs area end ----------------------------
+
+	// ----------------------------   bubble diagram area  ----------------------------
 	const $ = go.GraphObject.make;
 
 	const blues = [
@@ -19,9 +33,7 @@ export const BubblesDiagram = () => {
 		'#01579B',
 	];
 
-	useEffect(() => {
-		initDiagram();
-	}, []);
+	
 
 	let bubbleDiagram: any;
 
@@ -29,6 +41,7 @@ export const BubblesDiagram = () => {
 		bubbleDiagram = $(go.Diagram, 'bubbleDiagram', {
 			initialContentAlignment: go.Spot.Center,
 			layout: $(go.ForceDirectedLayout),
+			// background: "#f5f5f5",
 			'commandHandler.copiesTree': true,
 			'commandHandler.deletesTree': true,
 			'draggingTool.dragsTree': true,
@@ -58,7 +71,7 @@ export const BubblesDiagram = () => {
 				),
 				$(
 					go.TextBlock,
-					{ font: '12pt sans-serif', margin: 5 },
+					{ font: '12pt sans-serif', margin: 5, click: (e, obj) => window.open('./details/games/2') },
 					new go.Binding('text', 'key')
 				)
 			),
@@ -78,7 +91,7 @@ export const BubblesDiagram = () => {
 			})
 		);
 
-		const nodeContent = 'hello world';
+		const nodeContent = beginningStoryName || 'Fail to fethc initial data';
 		bubbleDiagram.model = new go.TreeModel([
 			{ key: nodeContent, color: blues[0], everExpanded: false },
 		]);
@@ -115,9 +128,9 @@ export const BubblesDiagram = () => {
 	const createSubTree = (parentdata: any) => {
 		// var numchildren = Math.floor(Math.random() * 10);
 		var numchildren = 3;
-		if (bubbleDiagram.nodes.count <= 1) {
-			numchildren += 1; // make sure the root node has at least one child
-		}
+		// if (bubbleDiagram.nodes.count <= 1) {
+		// 	numchildren += 1; // make sure the root node has at least one child
+		// }
 		// create several node data objects and add them to the model
 		var model = bubbleDiagram.model;
 		var parent = bubbleDiagram.findNodeForData(parentdata);
@@ -129,9 +142,10 @@ export const BubblesDiagram = () => {
 			grandparent = grandparent.findTreeParentNode();
 		}
 
+		let childData = beginningStoryLabels
 		for (var i = 0; i < numchildren; i++) {
 			var childdata = {
-				key: model.nodeDataArray.length,
+				key: childData[i].name || 'Fail to fetch data',
 				parent: parentdata.key,
 				rootdistance: degrees,
 			};

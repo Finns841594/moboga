@@ -14,7 +14,7 @@ export const LabelCard = () => {
       <div >
         { isOpen ? (
         <ul className={`media-card-list ${isOpen ? 'open' : ''}`}>
-          <li><a href={`./map`}>The Last Of Us</a></li>
+          <li><a href={`./map/2`}>The Last Of Us</a></li>
           <li><a>Resident Evil</a></li>
           <li>Mad Max</li>
         </ul>
