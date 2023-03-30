@@ -6,12 +6,14 @@ interface IBubbleDiagramProp {
 	beginningStoryId: string;
 	beginningStoryName: string;
 	beginningStoryLabels: Label[];
+	allStories: StoryObj[];
 }
 
 export const BubblesDiagram = ({
 	beginningStoryId,
 	beginningStoryName,
 	beginningStoryLabels,
+	allStories,
 }: IBubbleDiagramProp) => {
 	// ----------------------------   fengs area  ----------------------------
 
@@ -141,6 +143,7 @@ export const BubblesDiagram = ({
 		// create several node data objects and add them to the model
 		var model = bubbleDiagram.model;
 		var parent = bubbleDiagram.findNodeForData(parentdata);
+		console.log('🤪 parentData:', parentdata);
 
 		var degrees = 1;
 		var grandparent = parent.findTreeParentNode();
@@ -150,7 +153,7 @@ export const BubblesDiagram = ({
 		}
 
 		let childData = beginningStoryLabels;
-		for (var i = 0; i < numchildren; i++) {
+		for (var i = 0; i < childData.length; i++) {
 			var childdata = {
 				key: childData[i].name || 'Fail to fetch data',
 				parent: parentdata.key,
