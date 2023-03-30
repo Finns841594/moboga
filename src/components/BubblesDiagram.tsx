@@ -7,6 +7,7 @@ interface IBubbleDiagramProp {
 	beginningStoryName: string;
 	beginningStoryLabels: Label[];
 	allStories: StoryObj[];
+	labels: Label[];
 }
 
 export const BubblesDiagram = ({
@@ -14,6 +15,7 @@ export const BubblesDiagram = ({
 	beginningStoryName,
 	beginningStoryLabels,
 	allStories,
+	labels,
 }: IBubbleDiagramProp) => {
 	// ----------------------------   fengs area  ----------------------------
 
@@ -152,10 +154,31 @@ export const BubblesDiagram = ({
 			grandparent = grandparent.findTreeParentNode();
 		}
 
-		let childData = beginningStoryLabels;
+		let childData:any = [];
+		// check if current parentdata.key is a story or a lable
+		// if it is a story, then fetch the labels
+		const labelCheckingResult = labels.filter((label: any) => label.name === parentdata.key)
+		if (labelCheckingResult && labelCheckingResult.length > 0) {
+			// get stories by the label
+			childData = allStories.filter((story: any) => story.labels.some((label: any) => label.name === parentdata.key))
+			console.log('🤪 childData in stories:', childData)
+		} else {
+			// get labels
+			const theStory = allStories.find((story: any) => story.storyname === parentdata.key)
+			console.log('🤪 theStory:', theStory)
+			if (theStory) {
+				theStory.labels.forEach((label: any) => {
+				childData.push(label)
+				console.log('🤪 childData in labels:', childData)
+			})
+			}
+		}
+		// if it is a label, then fetch the stories
+
+		
 		for (var i = 0; i < childData.length; i++) {
 			var childdata = {
-				key: childData[i].name || 'Fail to fetch data',
+				key: childData[i].name || childData[i].storyname || 'Fail to fetch data',
 				parent: parentdata.key,
 				rootdistance: degrees,
 			};
