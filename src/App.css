@@ -65,7 +65,7 @@
 	flex-direction: row;
 	padding: 1rem 0;
 	border-bottom: 2px solid #eaeaea;
-	width: 1000px;
+	width: 100%;
 	margin-bottom: 70px;
 	align-items: center;
 }

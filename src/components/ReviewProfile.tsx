@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { deleteReview, editReview } from '../api';
+import { Rating } from 'react-simple-star-rating';
 import './ReviewsArea.css';
 
 type ReviewProps = {
 	reviewId: string;
 	content: string;
-	rating: string;
+	rating: number;
 	storyName: string;
 	updateReviews: () => void;
 };
@@ -36,16 +37,24 @@ export const ReviewProfile = ({
 			<li className="review-item" key={reviewId}>
 				<div className="review-item__title">
 					<h4>{storyName}</h4>
-					<p>Rating: {rating}</p>
+					<Rating readonly={true} initialValue={rating} size={23} />
 				</div>
 				{isEditing ? (
-					<>
+					<div className="edit-container">
 						<textarea
 							onChange={e => setNewContent(e.target.value)}
+							style={{
+								width: '800px',
+								maxWidth: '100%',
+								height: '60px',
+								borderRadius: '5px',
+							}}
 							value={newContent}
 						></textarea>
-						<button onClick={handleEdit}>Save</button>
-					</>
+						<button className="reviews-button save" onClick={handleEdit}>
+							Save
+						</button>
+					</div>
 				) : (
 					<p>{content}</p>
 				)}

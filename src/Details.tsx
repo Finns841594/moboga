@@ -4,6 +4,9 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import Labels from './components/Labels';
 import MediaCards from './components/MediaCards';
+import MediaCardsBooks from './components/MediaCardsBooks';
+import MediaCardsMovies from './components/MediaCardsBooks';
+import MediaCardsGames from './components/MediaCardsGames';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
 
@@ -39,15 +42,15 @@ export const Details = () => {
 			{story && params.media ? (
 				params.media === 'movies' ? (
 					<>
-						<MediaCards medias={story['movies']} />
+						<MediaCardsMovies medias={story['movies']} />
 					</>
 				) : params.media === 'books' ? (
 					<>
-						<MediaCards medias={story['books']} />
+						<MediaCardsBooks medias={story['books']} />
 					</>
 				) : (
 					<>
-						<MediaCards medias={story['games']} />
+						<MediaCardsGames medias={story['games']} />
 					</>
 				)
 			) : null}

@@ -1,8 +1,5 @@
 .media__cards-area {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: center;
 	padding: 20px;
 	margin-top: 50px;
 	max-width: 1000px;
@@ -14,4 +11,25 @@
 	width: 300px;
 	margin-inline: 5px;
 	flex: 0 0 auto;
+}
+
+.media__card__title {
+	font-size: 23px;
+	height: 50px;
+	align-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: scroll;
+}
+
+.media__card__movies {
+	height: 198px;
+	overflow: scroll;
+	text-align: left;
+}
+.media__card__games {
+	height: 140px;
+	overflow: scroll;
+	text-align: left;
 }

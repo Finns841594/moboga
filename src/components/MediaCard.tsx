@@ -16,6 +16,7 @@ const MediaCard = ({ mediaOid }: IMediaCardProp) => {
 		);
 		return result;
 	};
+	console.log(media?.released);
 
 	useEffect(() => {
 		getStories().then(results => setMedia(results));
@@ -25,10 +26,15 @@ const MediaCard = ({ mediaOid }: IMediaCardProp) => {
 		<div className="media__card">
 			{media ? (
 				<>
-					<h3>{media.name}</h3>
+					<h3 className="media__card__title">{media.name}</h3>
 					<img src={media.imgurl} className="img" />
+					{media.released ? (
+						<p>Released date: {media.released}</p>
+					) : (
+						<p>no released date yet</p>
+					)}
 					{media.description === 'to be written' ? null : (
-						<p>{media.description}</p>
+						<p className="media__card__description">{media.description}</p>
 					)}
 				</>
 			) : null}
