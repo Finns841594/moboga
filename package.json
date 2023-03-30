@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=/moboga/",
+    "build": "tsc && vite build",
     "resetdata": "rimraf data",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist"
