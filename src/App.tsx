@@ -10,7 +10,7 @@ import { Profile } from './Profile';
 function App() {
 	return (
 		<Routes>
-			<Route path="/map/details/:media/:id" element={<Details />}></Route>
+			<Route path="/details/:media/:id" element={<Details />}></Route>
 			<Route path="/register" element={<Signup />}></Route>
 			<Route path="/login" element={<Login />}></Route>
 			<Route path="/map/:storyId" element={<Map />}></Route>

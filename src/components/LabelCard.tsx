@@ -29,7 +29,7 @@ export const LabelCard = ({cardInfo}:ILabelCardProp) => {
 								<a href={`./map/3`}>Mad Max</a>
 							</li> */}
               {cardInfo.stories.length > 0 ? (
-                cardInfo.stories.map(story => <li className="media-card-item"><a href={`./map/${story.id}`}>{story.storyname}</a></li>)
+                cardInfo.stories.map(story => <li className="media-card-item"><a href={`/map/${story.id}`}>{story.storyname}</a></li>)
               ):null}
 						</ul>
 					) : null}

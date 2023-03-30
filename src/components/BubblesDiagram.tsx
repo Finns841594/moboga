@@ -79,7 +79,7 @@ export const BubblesDiagram = ({
 					{
 						font: '12pt sans-serif',
 						margin: 5,
-						click: (e: any, obj: any) => window.open('./details/games/2'),
+						click: (e: any, obj: any) => window.open(`/details/games/${beginningStoryId}`),
 					},
 					new go.Binding('text', 'key')
 				)

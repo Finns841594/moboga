@@ -63,7 +63,7 @@ export const Map = () => {
 		<>
 			<Header />
 			{/* <Bubbles /> */}
-			{story ? (
+			{story && stories ? (
 				<>
 					<BubblesDiagram
 						beginningStoryId={story.id}
