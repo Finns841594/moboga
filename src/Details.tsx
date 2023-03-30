@@ -19,7 +19,6 @@ export const Details = () => {
 			const result = fetch(backendHost + `api/stories/${params.id}`).then(res =>
 				res.json()
 			);
-			console.log('🤔🤔🤔🤔🤔', result);
 			return result;
 		};
 
@@ -52,7 +51,7 @@ export const Details = () => {
 					</>
 				)
 			) : null}
-			<ReviewsArea />
+			{story && <ReviewsArea story={story} />}
 			<Footer />
 		</>
 	);

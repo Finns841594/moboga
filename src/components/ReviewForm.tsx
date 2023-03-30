@@ -1,14 +1,16 @@
 import axios from 'axios';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { StoryObj } from '../types';
 import useAuth from '../useAuth';
 const backendHost = import.meta.env.VITE_BE_HOST;
 
 interface IReviewFormProp {
 	update: () => void;
+	story: StoryObj;
 }
 
-export const ReviewForm = ({ update }: IReviewFormProp) => {
+export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 	const params = useParams();
 	const [content, setContent] = useState('');
 	const [rating, setRating] = useState('');
@@ -25,6 +27,7 @@ export const ReviewForm = ({ update }: IReviewFormProp) => {
 					rating,
 					mediaType: params.media,
 					storyId: params.id,
+					storyName: story.storyname,
 				})
 				.then(res => res);
 			setContent('');

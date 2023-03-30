@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import useAuth from '../useAuth';
 import { Review } from './Review';
-import { Reviewtype } from '../types';
+import { Reviewtype, StoryObj } from '../types';
 import { getReviewsByStoryId } from '../api';
 import { ReviewForm } from './ReviewForm';
 import { useParams } from 'react-router-dom';
 import './ReviewsArea.css';
+type ReviewsAreaProps = { story: StoryObj };
 
-const ReviewsArea = () => {
+const ReviewsArea = ({ story }: ReviewsAreaProps) => {
 	const params = useParams();
 
 	const [reviews, setReviews] = useState<Reviewtype[]>([]);
@@ -17,7 +18,6 @@ const ReviewsArea = () => {
 	const gettingReviews = async () => {
 		if (params?.id) {
 			const allReviews = await getReviewsByStoryId(params.id);
-			console.log(allReviews);
 			setReviews(allReviews);
 		}
 	};
@@ -42,7 +42,7 @@ const ReviewsArea = () => {
 						{reviews.map((review: any) => {
 							return (
 								<Review
-									user={review.userName}
+									userName={review.userName}
 									reviewId={review.id}
 									content={review.content}
 									rating={review.rating}
@@ -53,7 +53,7 @@ const ReviewsArea = () => {
 				)}
 			</section>
 			<section>
-				<ReviewForm update={updateReviews} />
+				<ReviewForm update={updateReviews} story={story} />
 			</section>
 		</div>
 	);
