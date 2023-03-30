@@ -51,5 +51,18 @@ type Reviewtype = {
 	rating: string;
 };
 
-export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype, UserInfo };
+type LabelCardObj = {
+	backgroundColor: string,
+	textColor: string,
+	labelName: string,
+	stories: StoryObj[],
+}
+
+type NodeData = {
+  current: string,
+  isStory: boolean,
+  children: NodeData[] | []
+}
+
+export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype, UserInfo, LabelCardObj, NodeData };
 // const bookRating = books.reduce((acc, cur), cur.ratingFromAPI + acc)
