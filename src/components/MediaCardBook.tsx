@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { MediaObj } from '../types';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -23,7 +22,7 @@ type BooksMetadata = {
 	saleInfo: { buyLink: string };
 };
 
-const MediaCardBooks = ({ mediaOid }: IMediaCardProp) => {
+const MediaCardBook = ({ mediaOid }: IMediaCardProp) => {
 	const [books, setBooks] = useState<BooksObj>();
 
 	const getStories = () => {
@@ -32,20 +31,24 @@ const MediaCardBooks = ({ mediaOid }: IMediaCardProp) => {
 		);
 		return result;
 	};
-	console.log(books?.released);
 
 	useEffect(() => {
 		getStories().then(results => setBooks(results));
 	}, []);
 
 	return (
-		<div className="media__card">
+		<div key={mediaOid} className="media__card">
 			{books ? (
 				<>
 					<h3 className="media__card__title">{books.name}</h3>
-					<a href={books.metaData.saleInfo?.buyLink || ''}>
+
+					{books.metaData.saleInfo.buyLink ? (
+						<a href={books.metaData.saleInfo.buyLink}>
+							<img src={books.imgurl} className="img" />
+						</a>
+					) : (
 						<img src={books.imgurl} className="img" />
-					</a>
+					)}
 					{books.released ? (
 						<p>
 							<strong>Released date:</strong> {books.released}
@@ -76,4 +79,4 @@ const MediaCardBooks = ({ mediaOid }: IMediaCardProp) => {
 	);
 };
 
-export default MediaCardBooks;
+export default MediaCardBook;

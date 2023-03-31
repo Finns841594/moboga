@@ -102,6 +102,7 @@ export const BubblesDiagram = ({
 								window.open(`/details/games/${storyId}`)
 								}
 							},
+
 					},
 					new go.Binding('text', 'key')
 				)
@@ -174,10 +175,12 @@ export const BubblesDiagram = ({
 			grandparent = grandparent.findTreeParentNode();
 		}
 
-		let childData:any = [];
+		let childData: any = [];
 		// check if current parentdata.key is a story or a lable
 		// if it is a story, then fetch the labels
-		const labelCheckingResult = labels.filter((label: any) => label.name === parentdata.key)
+		const labelCheckingResult = labels.filter(
+			(label: any) => label.name === parentdata.key
+		);
 		if (labelCheckingResult && labelCheckingResult.length > 0) {
 			// get stories by the label
 			childData = allStories.filter((story: any) => story.labels.some((label: any) => label.name === parentdata.key))
@@ -191,14 +194,15 @@ export const BubblesDiagram = ({
 				childData.push(label)
 				// console.log('🤪 childData in labels:', childData)
 			})
+
 			}
 		}
 		// if it is a label, then fetch the stories
 
-		
 		for (var i = 0; i < childData.length; i++) {
 			var childdata = {
-				key: childData[i].name || childData[i].storyname || 'Fail to fetch data',
+				key:
+					childData[i].name || childData[i].storyname || 'Fail to fetch data',
 				parent: parentdata.key,
 				rootdistance: degrees,
 				id: childData[i].id,

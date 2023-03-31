@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { MediaObj } from '../types';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -7,7 +6,7 @@ interface IMediaCardProp {
 	mediaOid: string;
 }
 
-type MoviesObj = {
+type MediaObj = {
 	id: string;
 	name: string;
 	description: string;
@@ -15,21 +14,10 @@ type MoviesObj = {
 	imgurl: string;
 	ratingFromAPI: number;
 	voteNumberFromAPI: number;
-	metaData: MovieMetadata;
 };
 
-type MovieMetadata = {
-	original_language: string;
-	overview: string;
-	popularity: number;
-	release_date: string;
-	title: string;
-	vote_average: number;
-	vote_count: number;
-};
-
-const MediaCardMovies = ({ mediaOid }: IMediaCardProp) => {
-	const [movies, setMovies] = useState<MoviesObj>();
+const MediaCardMovie = ({ mediaOid }: IMediaCardProp) => {
+	const [movies, setMovies] = useState<MediaObj>();
 
 	const getStories = () => {
 		const result = fetch(backendHost + `api/medias/${mediaOid}`).then(res =>
@@ -37,14 +25,13 @@ const MediaCardMovies = ({ mediaOid }: IMediaCardProp) => {
 		);
 		return result;
 	};
-	console.log(movies?.released);
 
 	useEffect(() => {
 		getStories().then(results => setMovies(results));
 	}, []);
 
 	return (
-		<div className="media__card">
+		<div key={mediaOid} className="media__card">
 			{movies ? (
 				<>
 					<h3 className="media__card__title">{movies.name}</h3>
@@ -74,4 +61,4 @@ const MediaCardMovies = ({ mediaOid }: IMediaCardProp) => {
 	);
 };
 
-export default MediaCardMovies;
+export default MediaCardMovie;
