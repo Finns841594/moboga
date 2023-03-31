@@ -43,7 +43,7 @@ const MediaCardBooks = ({ mediaOid }: IMediaCardProp) => {
 			{books ? (
 				<>
 					<h3 className="media__card__title">{books.name}</h3>
-					<a href={books.metaData.saleInfo.buyLink}>
+					<a href={books.metaData.saleInfo?.buyLink || ''}>
 						<img src={books.imgurl} className="img" />
 					</a>
 					{books.released ? (
