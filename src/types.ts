@@ -24,18 +24,18 @@ type MediaObj = {
 	name: string;
 	description: string;
 	type: string;
-	year: number;
+	released: string;
 	imgurl: string;
 	ratingFromAPI: number;
 	voteNumberFromAPI: number;
-}
+};
 
 type UserInfo = {
 	userId: string;
 	email: string;
 	name: string;
 	lastName: string;
-};;
+};
 
 type User = {
 	id: string;
@@ -52,17 +52,27 @@ type Reviewtype = {
 };
 
 type LabelCardObj = {
-	backgroundColor: string,
-	textColor: string,
-	labelName: string,
-	stories: StoryObj[],
-}
+	backgroundColor: string;
+	textColor: string;
+	labelName: string;
+	stories: StoryObj[];
+};
 
 type NodeData = {
-  current: string,
-  isStory: boolean,
-  children: NodeData[] | []
-}
+	current: string;
+	isStory: boolean;
+	children: NodeData[] | [];
+};
 
-export type { StoryObj, MediaObj, Label, MediaInStory, User, Reviewtype, UserInfo, LabelCardObj, NodeData };
+export type {
+	StoryObj,
+	MediaObj,
+	Label,
+	MediaInStory,
+	User,
+	Reviewtype,
+	UserInfo,
+	LabelCardObj,
+	NodeData,
+};
 // const bookRating = books.reduce((acc, cur), cur.ratingFromAPI + acc)

@@ -1,5 +1,6 @@
 .review-area {
 	padding: 10px 40px;
+	max-width: 990px;
 }
 
 .review-item {
@@ -9,6 +10,7 @@
 	text-align: left;
 	padding: 10px 40px;
 	margin-bottom: 20px;
+	max-width: 800px;
 }
 
 .review-item__title {
@@ -16,6 +18,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: -20px;
+	align-items: center;
+	font-size: larger;
 }
 
 .add-review-area {
@@ -54,6 +58,13 @@
 }
 
 .reviews-button {
-	padding-inline: 5px;
-	margin-inline: 5px;
+	margin: 5px;
+}
+.save {
+	width: 80px;
+}
+.edit-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }

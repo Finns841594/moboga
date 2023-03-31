@@ -3,6 +3,7 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { StoryObj } from '../types';
 import useAuth from '../useAuth';
+import { Rating } from 'react-simple-star-rating';
 const backendHost = import.meta.env.VITE_BE_HOST;
 
 interface IReviewFormProp {
@@ -13,7 +14,7 @@ interface IReviewFormProp {
 export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 	const params = useParams();
 	const [content, setContent] = useState('');
-	const [rating, setRating] = useState('');
+	const [rating, setRating] = useState(0);
 	const { authenticated, isAuthenticated, user } = useAuth();
 
 	const handleSubmit = async (e: SyntheticEvent) => {
@@ -31,12 +32,21 @@ export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 				})
 				.then(res => res);
 			setContent('');
-			setRating('');
 			update();
+			setRating(0);
 		} catch (error: any) {
 			console.log(error);
 		}
 	};
+	const handleRating = (rate: number) => {
+		setRating(rate);
+	};
+	// Optinal callback functions
+	const onPointerEnter = () => console.log('Enter');
+	const onPointerLeave = () => console.log('Leave');
+	const onPointerMove = (value: number, index: number) =>
+		console.log(value, index);
+
 	useEffect(() => {
 		isAuthenticated();
 	}, []);
@@ -54,7 +64,15 @@ export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 							className="review__text-input"
 						/>
 						<div>
-							<label htmlFor="rating">Rating:</label>
+							<Rating
+								onClick={handleRating}
+								onPointerEnter={onPointerEnter}
+								onPointerLeave={onPointerLeave}
+								onPointerMove={onPointerMove}
+								transition={true}
+								showTooltip={true}
+							/>
+							{/* <label htmlFor="rating">Rating:</label>
 							<input
 								id="rating"
 								type="number"
@@ -64,7 +82,7 @@ export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 								value={rating}
 								onChange={e => setRating(e.target.value)}
 								className="review__rate-input"
-							/>
+							/> */}
 						</div>
 						<button type="submit">Add</button>
 					</div>

@@ -35,9 +35,9 @@ const ReviewsArea = ({ story }: ReviewsAreaProps) => {
 
 	return (
 		<div className="review-area">
-			<h2 style={{ textAlign: 'left' }}>Reviews:</h2>
-			<section>
-				{reviews && (
+			{reviews.length > 0 ? (
+				<section>
+					<h2 style={{ textAlign: 'left' }}>Reviews:</h2>
 					<ul>
 						{reviews.map((review: any) => {
 							return (
@@ -50,8 +50,12 @@ const ReviewsArea = ({ story }: ReviewsAreaProps) => {
 							);
 						})}
 					</ul>
-				)}
-			</section>
+				</section>
+			) : (
+				<h2 style={{ textAlign: 'left' }}>
+					Be the first to review this story!
+				</h2>
+			)}
 			<section>
 				<ReviewForm update={updateReviews} story={story} />
 			</section>
