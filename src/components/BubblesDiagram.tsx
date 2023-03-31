@@ -23,9 +23,43 @@ export const BubblesDiagram = ({
 		initDiagram();
 	}, []);
 
-	console.log('👀 beginningStoryLabels', beginningStoryLabels);
+	// console.log('👀 beginningStoryLabels', beginningStoryLabels);
 	// ----------------------------   fengs area end ----------------------------
-
+	function createButton(name:any, spot:any, testSpot:any) {
+		console.log('👀👀👀👀 testSpot', testSpot);
+		return $(
+		go.Panel,
+		'Spot',
+		{ alignment: spot, alignmentFocus: go.Spot.Center,},
+		$( go.Shape, 'Circle',
+		{
+		fill: 'transparent',
+		stroke: '#eaeaea',
+		strokeWidth: 1,
+		// width: 80,
+		// height: 30,
+		},
+		new go.Binding('fill', 'buttonFill')
+		),
+		$(
+		go.TextBlock,
+		name,
+		{
+		font: '12px sans-serif',
+		margin: 0,
+		},
+		new go.Binding('text', 'buttonText')
+		),
+		{
+		click: (e, obj) => {
+		e.diagram.startTransaction('button click');
+		console.log(`${name} clicked!`);
+		// Add your custom logic for the button click here
+		e.diagram.commitTransaction('button click');
+		},
+		}
+		);
+		}
 	// ----------------------------   bubble diagram area  ----------------------------
 	const $ = go.GraphObject.make;
 
@@ -40,9 +74,11 @@ export const BubblesDiagram = ({
 	];
 
 	let bubbleDiagram: any;
+	let createdItems: any = [];
 
 	const initDiagram = () => {
 
+		createdItems = [beginningStoryId];
 		const glowEffect = $(go.Adornment, 'spot',
 			$(go.Shape, 'Circle', { fill: 'transparent', stroke: 'white', strokeWidth: 10}),
 			$(go.Placeholder)
@@ -77,10 +113,13 @@ export const BubblesDiagram = ({
 					// 	dist = Math.min(blues.length - 1, dist);
 					// 	return 'transparent';
 					// }),
-					{
-						mouseEnter: (e:any, obj:any) => { obj.strokeWidth = 10; obj.stroke = "#FF6495"; },
-						mouseLeave: (e:any, obj:any) => { obj.strokeWidth = 3; obj.stroke = "#eaeaea"; }
-					},
+					// {
+					// 	mouseEnter: (e:any, obj:any) => { obj.strokeWidth = 10; obj.stroke = "#FF6495"; },
+					// 	mouseLeave: (e:any, obj:any) => { obj.strokeWidth = 3; obj.stroke = "#eaeaea"; },
+					// 	click: (e:any, node:any) => {
+					// 		node.stroke = "#eaeaea";
+					// 	}
+					// },
 					new go.Binding("stroke", "rootdistance", dist => {
 						dist = Math.min(blues.length - 1, dist);
 						return blues[dist]
@@ -93,13 +132,17 @@ export const BubblesDiagram = ({
 						stroke: 'white',
 						margin: 3,
 						click: (e: any, obj: any) => {
-							console.log('👀👀👀👀 story name', obj.bc);
+							// console.log('👀👀👀👀 story name', obj.bc);
 
 							let storyId 
 							const story = allStories.find(story => story.storyname === obj.bc)
 							if (story) { 
 								storyId = story.id;
-								window.open(`/details/games/${storyId}`)
+								console.log('👀👀👀👀 story id', storyId);
+								// createButton('Movies', go.Spot.TopLeft),
+								// createButton('Books', go.Spot.Left),
+								// createButton('Games', go.Spot.BottomLeft)
+								window.open(`/details/movies/${storyId}`)
 								}
 							},
 
@@ -120,17 +163,28 @@ export const BubblesDiagram = ({
 					e.handled = true;
 					expandNode(node);
 				},
-			})
+			}),
+			// createButton('Movies', go.Spot.TopCenter, go),
+			// createButton('Books', go.Spot.BottomLeft, go),
+			// createButton('Games', go.Spot.BottomRight, go),
+			
+		);
+
+		bubbleDiagram.linkTemplate = $(
+			go.Link,
+			{ curve: go.Link.Bezier },
+			$(go.Shape, { stroke: '#eaeaea', strokeWidth: 2 }),
+			$(
+				go.Shape,
+				{ toArrow: 'OpenTriangle' },
+				{ stroke: '#eaeaea', strokeWidth: 2 }
+			)
 		);
 
 		const nodeContent = beginningStoryName || 'Fail to fethc initial data';
 		bubbleDiagram.model = new go.TreeModel([
 			{ key: nodeContent, color: '#eaeaea', strokeWidth: 5, everExpanded: false, id: beginningStoryId},
 		]);
-
-		// document.getElementById('zoomToFit').addEventListener('click', () => myDiagram.zoomToFit());
-
-		// document.getElementById('expandAtRandom').addEventListener('click', () => expandAtRandom());
 	};
 
 	const expandNode = (node: any) => {
@@ -158,15 +212,9 @@ export const BubblesDiagram = ({
 	};
 
 	const createSubTree = (parentdata: any) => {
-		// var numchildren = Math.floor(Math.random() * 10);
-		var numchildren = 3;
-		// if (bubbleDiagram.nodes.count <= 1) {
-		// 	numchildren += 1; // make sure the root node has at least one child
-		// }
 		// create several node data objects and add them to the model
 		var model = bubbleDiagram.model;
 		var parent = bubbleDiagram.findNodeForData(parentdata);
-		// console.log('🤪 parentData:', parentdata);
 
 		var degrees = 1;
 		var grandparent = parent.findTreeParentNode();
@@ -184,23 +232,22 @@ export const BubblesDiagram = ({
 		if (labelCheckingResult && labelCheckingResult.length > 0) {
 			// get stories by the label
 			childData = allStories.filter((story: any) => story.labels.some((label: any) => label.name === parentdata.key))
-			// console.log('🤪 childData in stories:', childData)
 		} else {
-			// get labels
+			// get labels by the story
 			const theStory = allStories.find((story: any) => story.storyname === parentdata.key)
-			// console.log('🤪 theStory:', theStory)
 			if (theStory) {
 				theStory.labels.forEach((label: any) => {
 				childData.push(label)
-				// console.log('🤪 childData in labels:', childData)
 			})
 
 			}
 		}
-		// if it is a label, then fetch the stories
 
 		for (var i = 0; i < childData.length; i++) {
-			var childdata = {
+			if (createdItems.includes(childData[i].id)) {
+				// do nothing
+			} else {
+				var childdata = {
 				key:
 					childData[i].name || childData[i].storyname || 'Fail to fetch data',
 				parent: parentdata.key,
@@ -211,9 +258,12 @@ export const BubblesDiagram = ({
 			model.addNodeData(childdata);
 			// position the new child node close to the parent
 			var child = bubbleDiagram.findNodeForData(childdata);
-			child.location = parent.location;
+			child.location = parent.location;}
+			createdItems.push(childData[i].id)
 		}
-		return numchildren;
+		// to be finished: return correct number of children
+		// console.log('🤪 childData length:', childData.length)
+		return childData.length;
 	};
 
 	const expandAtRandom = () => {

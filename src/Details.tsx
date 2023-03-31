@@ -8,6 +8,7 @@ import MediaCardsMovies from './components/MediaCardsMovies';
 import MediaCardsGames from './components/MediaCardsGames';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
+import { HeaderDetailMovie } from './components/HeaderDetailMovie';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -32,7 +33,8 @@ export const Details = () => {
 	console.log(params.media, 'HELLO HERE');
 	return (
 		<>
-			<Header />
+		{params.media === 'movies' ? (<HeaderDetailMovie />):<Header />}
+			
 			{story ? (
 				<>
 					<h1>{story.storyname}</h1>

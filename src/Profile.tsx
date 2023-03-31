@@ -38,7 +38,7 @@ export const Profile = () => {
 					<div className="">
 						<h2 style={{ textAlign: 'left' }}>Manage your reviews:</h2>
 						<section>
-							{reviews ? (
+							{reviews.length > 0 ? (
 								<ul>
 									{reviews.map((review: any) => {
 										return (
