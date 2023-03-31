@@ -70,7 +70,7 @@ export const BubblesDiagram = ({
 				$(
 					go.Shape,
 					'Circle',
-					{ fill: 'whitesmoke', stroke: 'green' },
+					{ fill: 'whitesmoke', stroke: '#eaeaea' },
 					new go.Binding('fill', 'rootdistance', dist => {
 						dist = Math.min(blues.length - 1, dist);
 						return blues[dist];
@@ -87,6 +87,11 @@ export const BubblesDiagram = ({
 					new go.Binding('text', 'key')
 				)
 			),
+			// $('HyperlinkText',
+			// (node:any) => 'https://www.google.com/search?q=' + node.data.key,
+			// (node:any) => node.data.key,
+			// { margin: 1, maxSize: new go.Size(80, 80), textAlign: "center" }
+			// ),
 			$('TreeExpanderButton', {
 				name: 'TREEBUTTON',
 				width: 14,
