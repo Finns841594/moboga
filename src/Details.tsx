@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import Labels from './components/Labels';
-import MediaCards from './components/MediaCards';
 import MediaCardsBooks from './components/MediaCardsBooks';
-import MediaCardsMovies from './components/MediaCardsBooks';
+import MediaCardsMovies from './components/MediaCardsMovies';
 import MediaCardsGames from './components/MediaCardsGames';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
@@ -30,6 +29,7 @@ export const Details = () => {
 		}, []);
 	}
 
+	console.log(params.media, 'HELLO HERE');
 	return (
 		<>
 			<Header />
@@ -42,6 +42,7 @@ export const Details = () => {
 			{story && params.media ? (
 				params.media === 'movies' ? (
 					<>
+						{console.log(story['movies'], 'MOVIES HERE')}
 						<MediaCardsMovies medias={story['movies']} />
 					</>
 				) : params.media === 'books' ? (

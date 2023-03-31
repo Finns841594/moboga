@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from 'react';
 import useAuth from './useAuth';
 import './Signup.css';
 import { Header } from './components/Header';
+import GoogleLoginPage from './components/GoogleLoginPage';
 
 export const Signup = () => {
 	const [firstName, setFirstName] = useState('');
@@ -21,6 +22,7 @@ export const Signup = () => {
 			<div className="signup-form">
 				<form onSubmit={handleSubmit}>
 					<h3 className="signup-form__title">Sign Up</h3>
+					<GoogleLoginPage />
 					<h4 className="signup-form__subtitle">Create a new account:</h4>
 					<div className="signup-form__container">
 						<label className="signup-form__label">

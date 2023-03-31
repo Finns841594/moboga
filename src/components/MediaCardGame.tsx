@@ -22,7 +22,7 @@ type GamesMetadata = {
 	platforms: { platform: { name: string } }[];
 };
 
-const MediaCardGames = ({ mediaOid }: IMediaCardProp) => {
+const MediaCardGame = ({ mediaOid }: IMediaCardProp) => {
 	const [games, setGames] = useState<GamesObj>();
 
 	const getStories = () => {
@@ -37,7 +37,7 @@ const MediaCardGames = ({ mediaOid }: IMediaCardProp) => {
 	}, []);
 
 	return (
-		<div className="media__card">
+		<div key={mediaOid} className="media__card">
 			{games ? (
 				<>
 					<h3 className="media__card__title">{games.name}</h3>
@@ -72,4 +72,4 @@ const MediaCardGames = ({ mediaOid }: IMediaCardProp) => {
 	);
 };
 
-export default MediaCardGames;
+export default MediaCardGame;

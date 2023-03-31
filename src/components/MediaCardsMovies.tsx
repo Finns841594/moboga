@@ -1,6 +1,6 @@
 import { MediaInStory } from '../types';
 import './MediaCards.css';
-import MediaCardMovies from './MediaCardMovies';
+import MediaCardMovie from './MediaCardMovie';
 
 interface IMediaCardsProp {
 	medias: MediaInStory[];
@@ -11,7 +11,7 @@ const MediaCardsMovies = ({ medias }: IMediaCardsProp) => {
 		<>
 			<div className="media__cards-area">
 				{medias.map(media => (
-					<MediaCardMovies mediaOid={media.oid} />
+					<MediaCardMovie key={media.oid} mediaOid={media.oid} />
 				))}
 			</div>
 		</>
