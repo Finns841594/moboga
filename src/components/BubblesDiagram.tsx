@@ -30,25 +30,27 @@ export const BubblesDiagram = ({
 	const $ = go.GraphObject.make;
 
 	const blues = [
-		'#E1F5FE',
-		'#B3E5FC',
-		'#81D4FA',
-		'#4FC3F7',
-		'#29B6F6',
-		'#03A9F4',
-		'#039BE5',
-		'#0288D1',
-		'#0277BD',
-		'#01579B',
+		'#646CFF',
+		'#8464FF',
+		'#A364FF',
+		'#C864FF',
+		'#F264FF',
+		'#FF64C1',
+		'#FF6495',
 	];
 
 	let bubbleDiagram: any;
 
 	const initDiagram = () => {
+
+		const glowEffect = $(go.Adornment, 'spot',
+			$(go.Shape, 'Circle', { fill: 'transparent', stroke: 'white', strokeWidth: 10}),
+			$(go.Placeholder)
+		);
+		
 		bubbleDiagram = $(go.Diagram, 'bubbleDiagram', {
 			initialContentAlignment: go.Spot.Center,
 			layout: $(go.ForceDirectedLayout),
-			// background: "#f5f5f5",
 			'commandHandler.copiesTree': true,
 			'commandHandler.deletesTree': true,
 			'draggingTool.dragsTree': true,
@@ -70,28 +72,41 @@ export const BubblesDiagram = ({
 				$(
 					go.Shape,
 					'Circle',
-					{ fill: 'whitesmoke', stroke: '#eaeaea' },
-					new go.Binding('fill', 'rootdistance', dist => {
+					{ fill: 'transparent', stroke: '#eaeaea', strokeWidth: 3},
+					// new go.Binding('fill', 'rootdistance', dist => {
+					// 	dist = Math.min(blues.length - 1, dist);
+					// 	return 'transparent';
+					// }),
+					{
+						mouseEnter: (e:any, obj:any) => { obj.strokeWidth = 10; obj.stroke = "#FF6495"; },
+						mouseLeave: (e:any, obj:any) => { obj.strokeWidth = 3; obj.stroke = "#eaeaea"; }
+					},
+					new go.Binding("stroke", "rootdistance", dist => {
 						dist = Math.min(blues.length - 1, dist);
-						return blues[dist];
-					})
+						return blues[dist]
+					}),
 				),
 				$(
 					go.TextBlock,
 					{
-						font: '12pt sans-serif',
-						margin: 5,
-						click: (e: any, obj: any) =>
-							window.open(`/details/games/${beginningStoryId}`),
+						font: 'bold 12pt sans-serif',
+						stroke: 'white',
+						margin: 3,
+						click: (e: any, obj: any) => {
+							console.log('👀👀👀👀 story name', obj.bc);
+
+							let storyId 
+							const story = allStories.find(story => story.storyname === obj.bc)
+							if (story) { 
+								storyId = story.id;
+								window.open(`/details/games/${storyId}`)
+								}
+							},
+
 					},
 					new go.Binding('text', 'key')
 				)
 			),
-			// $('HyperlinkText',
-			// (node:any) => 'https://www.google.com/search?q=' + node.data.key,
-			// (node:any) => node.data.key,
-			// { margin: 1, maxSize: new go.Size(80, 80), textAlign: "center" }
-			// ),
 			$('TreeExpanderButton', {
 				name: 'TREEBUTTON',
 				width: 14,
@@ -110,7 +125,7 @@ export const BubblesDiagram = ({
 
 		const nodeContent = beginningStoryName || 'Fail to fethc initial data';
 		bubbleDiagram.model = new go.TreeModel([
-			{ key: nodeContent, color: blues[0], everExpanded: false },
+			{ key: nodeContent, color: '#eaeaea', strokeWidth: 5, everExpanded: false, id: beginningStoryId},
 		]);
 
 		// document.getElementById('zoomToFit').addEventListener('click', () => myDiagram.zoomToFit());
@@ -151,7 +166,7 @@ export const BubblesDiagram = ({
 		// create several node data objects and add them to the model
 		var model = bubbleDiagram.model;
 		var parent = bubbleDiagram.findNodeForData(parentdata);
-		console.log('🤪 parentData:', parentdata);
+		// console.log('🤪 parentData:', parentdata);
 
 		var degrees = 1;
 		var grandparent = parent.findTreeParentNode();
@@ -168,21 +183,18 @@ export const BubblesDiagram = ({
 		);
 		if (labelCheckingResult && labelCheckingResult.length > 0) {
 			// get stories by the label
-			childData = allStories.filter((story: any) =>
-				story.labels.some((label: any) => label.name === parentdata.key)
-			);
-			console.log('🤪 childData in stories:', childData);
+			childData = allStories.filter((story: any) => story.labels.some((label: any) => label.name === parentdata.key))
+			// console.log('🤪 childData in stories:', childData)
 		} else {
 			// get labels
-			const theStory = allStories.find(
-				(story: any) => story.storyname === parentdata.key
-			);
-			console.log('🤪 theStory:', theStory);
+			const theStory = allStories.find((story: any) => story.storyname === parentdata.key)
+			// console.log('🤪 theStory:', theStory)
 			if (theStory) {
 				theStory.labels.forEach((label: any) => {
-					childData.push(label);
-					console.log('🤪 childData in labels:', childData);
-				});
+				childData.push(label)
+				// console.log('🤪 childData in labels:', childData)
+			})
+
 			}
 		}
 		// if it is a label, then fetch the stories
@@ -193,6 +205,7 @@ export const BubblesDiagram = ({
 					childData[i].name || childData[i].storyname || 'Fail to fetch data',
 				parent: parentdata.key,
 				rootdistance: degrees,
+				id: childData[i].id,
 			};
 			// add to model.nodeDataArray and create a Node
 			model.addNodeData(childdata);
