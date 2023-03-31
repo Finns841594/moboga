@@ -13,7 +13,7 @@ export const Footer = () => {
 				<p className="footer-text">
 					Data provided by the Google Books API, the MovieDB API and Rawg API.
 				</p>
-				<p>Contributers:</p>
+				<p>Founders:</p>
 				<div className="github__container">
 					<span className="github-profile-container">
 						<a href="https://github.com/Finns841594">
