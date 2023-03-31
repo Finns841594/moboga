@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import Labels from './components/Labels';
-import MediaCards from './components/MediaCards';
 import MediaCardsBooks from './components/MediaCardsBooks';
 import MediaCardsMovies from './components/MediaCardsBooks';
 import MediaCardsGames from './components/MediaCardsGames';
