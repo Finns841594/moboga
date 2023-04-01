@@ -30,7 +30,6 @@ export const Details = () => {
 		}, []);
 	}
 
-	console.log(params.media, 'HELLO HERE');
 	return (
 		<>
 		{params.media === 'movies' ? (<HeaderDetailMovie />):<Header />}
@@ -38,13 +37,12 @@ export const Details = () => {
 			{story ? (
 				<>
 					<h1>{story.storyname}</h1>
-					<Labels labels={story.labels} />
+					<Labels initialLabels={story.labels} storyId={story.id} />
 				</>
 			) : null}
 			{story && params.media ? (
 				params.media === 'movies' ? (
 					<>
-						{console.log(story['movies'], 'MOVIES HERE')}
 						<MediaCardsMovies medias={story['movies']} />
 					</>
 				) : params.media === 'books' ? (

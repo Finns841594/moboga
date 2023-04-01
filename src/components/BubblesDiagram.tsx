@@ -139,9 +139,6 @@ export const BubblesDiagram = ({
 							if (story) { 
 								storyId = story.id;
 								console.log('👀👀👀👀 story id', storyId);
-								// createButton('Movies', go.Spot.TopLeft),
-								// createButton('Books', go.Spot.Left),
-								// createButton('Games', go.Spot.BottomLeft)
 								window.open(`/details/movies/${storyId}`)
 								}
 							},
