@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
 import useAuth from './useAuth';
 import './Signup.css';
-import { Header } from './components/Header';
+// import { Header } from './components/Header';
 import { GoogleLogin } from '@react-oauth/google';
-import { useGoogleLogin } from '@react-oauth/google';
+// import { useGoogleLogin } from '@react-oauth/google';
 
 export const Signup = () => {
 	const [firstName, setFirstName] = useState('');
@@ -17,14 +17,14 @@ export const Signup = () => {
 		signUp(firstName, lastName, email, password);
 	};
 
-	const login = useGoogleLogin({
-		onSuccess: (tokenResponse: any) =>
-			signUpWithGoogle(tokenResponse.access_token),
-	});
+	// const login = useGoogleLogin({
+	// 	onSuccess: (tokenResponse: any) =>
+	// 		signUpWithGoogle(tokenResponse.access_token),
+	// });
 
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<div className="signup-form">
 				<form onSubmit={handleSubmit}>
 					<h3 className="signup-form__title">Sign Up</h3>
@@ -96,15 +96,24 @@ export const Signup = () => {
 						<br />
 						<h4>Or Register with Google</h4>
 						<GoogleLogin
-							text="continue_with"
-							type="icon"
-							onSuccess={(credentialResponse: any) => {
-								signUpWithGoogle(credentialResponse.credential);
+							onSuccess={credentialResponse => {
+								console.log(credentialResponse);
 							}}
 							onError={() => {
 								console.log('Login Failed');
 							}}
 						/>
+
+						{/* <GoogleLogin
+							text="continue_with"
+							onSuccess={(credentialResponse: any) => {
+								console.log(credentialResponse);
+								signUpWithGoogle(credentialResponse.credential);
+							}}
+							onError={() => {
+								console.log('Login Failed');
+							}}
+						/> */}
 						{/* <button className="google-bton" onClick={() => login()}>
 					<img
 						className="google-icon"

@@ -4,9 +4,8 @@ import MenuBar from '../assets/menu-bar.svg';
 import { Dropdown } from './Dropdown';
 
 export const Header = () => {
-	const { authenticated, logout, isAuthenticated, user } = useAuth();
+	const { authenticated, isAuthenticated, user } = useAuth();
 	const [divDrop, setDivDrop] = useState(false);
-	console.log(user?.picture, 'HERE PHOTO');
 	useEffect(() => {
 		isAuthenticated();
 	}, []);

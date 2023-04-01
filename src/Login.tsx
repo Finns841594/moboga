@@ -57,7 +57,7 @@ export const Login = () => {
 
 						<br />
 						<h4>Or Log in with Google</h4>
-						<GoogleLogin
+						{/* <GoogleLogin
 							text="continue_with"
 							type="icon"
 							onSuccess={(credentialResponse: any) => {
@@ -66,7 +66,7 @@ export const Login = () => {
 							onError={() => {
 								console.log('Login Failed');
 							}}
-						/>
+						/> */}
 					</div>
 					{invalidInput && <p className="invalid-input">{invalidInput}</p>}
 					<br />

@@ -4,16 +4,16 @@ import './App.css';
 import './index.css';
 import App from './App';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-	// <React.StrictMode>
-
-	<GoogleOAuthProvider
-		clientId={`608282841775-39jt11hsn1l6hjau7ts44u4j6ichb3dj.apps.googleusercontent.com`}
-	>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</GoogleOAuthProvider>
-	//  </React.StrictMode>,
+	<React.StrictMode>
+		<GoogleOAuthProvider
+			clientId={`608282841775-cr9vmcq2inkojijdi68ss3oe01q3vrvj.apps.googleusercontent.com`}
+		>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</GoogleOAuthProvider>
+	</React.StrictMode>
 );
