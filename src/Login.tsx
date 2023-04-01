@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import useAuth from './useAuth';
 import './Signup.css';
 import { Header } from './components/Header';
+import { GoogleLogin } from '@react-oauth/google';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const { login, invalidInput, setInvalidInput } = useAuth();
+	const { login, invalidInput, setInvalidInput, signInWithGoogle } = useAuth();
 
 	const handleSubmit = async (event: SyntheticEvent) => {
 		event.preventDefault();
@@ -20,7 +21,6 @@ export const Login = () => {
 			<div className="signup-form">
 				<form onSubmit={handleSubmit}>
 					<h3 className="signup-form__title">Log In</h3>
-
 					<div className="signup-form__container">
 						<label className="signup-form__label">
 							Email:
@@ -54,7 +54,19 @@ export const Login = () => {
 								}}
 							/>
 						</label>
+
 						<br />
+						<h4>Or Log in with Google</h4>
+						<GoogleLogin
+							text="continue_with"
+							type="icon"
+							onSuccess={(credentialResponse: any) => {
+								signInWithGoogle(credentialResponse.credential);
+							}}
+							onError={() => {
+								console.log('Login Failed');
+							}}
+						/>
 					</div>
 					{invalidInput && <p className="invalid-input">{invalidInput}</p>}
 					<br />

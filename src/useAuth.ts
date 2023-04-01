@@ -9,6 +9,7 @@ type UserInfo = {
 	email: string;
 	name: string;
 	lastName: string;
+	picture?: string;
 };
 
 function useAuth() {
@@ -22,6 +23,21 @@ function useAuth() {
 			const res = await axios.post(backendHost + 'api/login', {
 				email,
 				password,
+			});
+			localStorage.setItem('token', res.data);
+			setAuthenticated(true);
+			navigate(-2);
+			console.log('LOG IN SUCCESSFULLY!!!! 🥳');
+		} catch (error: any) {
+			console.error(error.response.data);
+			setInvalidInput(error.response.data.message);
+		}
+	};
+
+	const signInWithGoogle = async (credential: string) => {
+		try {
+			const res = await axios.post(backendHost + 'api/login-google', {
+				credential,
 			});
 			localStorage.setItem('token', res.data);
 			setAuthenticated(true);
@@ -67,6 +83,27 @@ function useAuth() {
 			setInvalidInput(error.response.data.message);
 		}
 	};
+	const signUpWithGoogle = async (credential: string) => {
+		console.log('here before backend call', credential);
+		try {
+			const response = await axios
+				.post(backendHost + 'api/google-users', {
+					credential,
+				})
+				.then(res => res);
+			if (response.status === 201) {
+				localStorage.setItem('token', response.data);
+				setAuthenticated(true);
+				navigate(-1);
+				console.log('REGISTER SUCCESSFULLY!!!! 🥳');
+			} else {
+				console.log('error while register');
+			}
+		} catch (error: any) {
+			console.log(error.response);
+			setInvalidInput(error.response.data.message);
+		}
+	};
 
 	const isAuthenticated = () => {
 		//in progress
@@ -81,7 +118,7 @@ function useAuth() {
 				setUser(res.data);
 			})
 			.catch(error => {
-				console.error(error);
+				console.error('WHAT IS LOVE?', error);
 			});
 		if (token) {
 			setAuthenticated(true);
@@ -99,6 +136,9 @@ function useAuth() {
 		signUp,
 		user,
 		setInvalidInput,
+		setAuthenticated,
+		signUpWithGoogle,
+		signInWithGoogle,
 	};
 }
 

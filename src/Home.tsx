@@ -1,17 +1,25 @@
-import { CardsArea } from './components/CardsArea'
-import { Footer } from './components/Footer'
-import { Header } from './components/Header'
-import { SearchArea } from './components/SearchArea'
+import { useEffect, useState } from 'react';
+import { CardsArea } from './components/CardsArea';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { SearchArea } from './components/SearchArea';
+import { StoryObj } from './types';
+import { getStories } from './api';
 
 const Home = () => {
-  return (
-    <>
-      <Header />
-      <SearchArea />
-      <CardsArea />
-      <Footer />
-    </>
-  )
-}
+	const [stories, setStories] = useState<StoryObj[]>([] as StoryObj[]);
 
-export default Home
+	useEffect(() => {
+		getStories().then(results => setStories(results));
+	}, []);
+	return (
+		<>
+			<Header />
+			<SearchArea stories={stories} />
+			<CardsArea stories={stories} />
+			<Footer />
+		</>
+	);
+};
+
+export default Home;

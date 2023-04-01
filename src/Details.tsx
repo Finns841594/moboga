@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Footer } from './components/Footer';
-import { Header } from './components/Header';
-import Labels from './components/Labels';
-import MediaCardsBooks from './components/MediaCardsBooks';
-import MediaCardsMovies from './components/MediaCardsMovies';
-import MediaCardsGames from './components/MediaCardsGames';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
-import { HeaderDetailMovie } from './components/HeaderDetailMovie';
+import { Header } from './components/Header';
+import { DetailsOfMovies } from './components/DetailsOfMovies';
+import { DetailsOfBooks } from './components/DetailsOfBooks';
+import { DetailsOfGames } from './components/DetailsOfGames';
+import './Details.css';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -30,32 +29,15 @@ export const Details = () => {
 		}, []);
 	}
 
-	console.log(params.media, 'HELLO HERE');
 	return (
 		<>
-		{params.media === 'movies' ? (<HeaderDetailMovie />):<Header />}
-			
-			{story ? (
-				<>
-					<h1>{story.storyname}</h1>
-					<Labels labels={story.labels} />
-				</>
-			) : null}
-			{story && params.media ? (
-				params.media === 'movies' ? (
-					<>
-						{console.log(story['movies'], 'MOVIES HERE')}
-						<MediaCardsMovies medias={story['movies']} />
-					</>
-				) : params.media === 'books' ? (
-					<>
-						<MediaCardsBooks medias={story['books']} />
-					</>
-				) : (
-					<>
-						<MediaCardsGames medias={story['games']} />
-					</>
-				)
+			<Header />
+			{story && params.media === 'movies' ? (
+				<DetailsOfMovies story={story} />
+			) : story && params.media === 'books' ? (
+				<DetailsOfBooks story={story} />
+			) : story && params.media === 'games' ? (
+				<DetailsOfGames story={story} />
 			) : null}
 			{story && <ReviewsArea story={story} />}
 			<Footer />
