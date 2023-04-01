@@ -21,28 +21,13 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
     const results = fetch(backendHost + `api/labels`).then(res => res.json());
     return results;
   }
-
   // getting the current story in oder to get labels
   const getStories = () => {
     const result = fetch(backendHost + `api/stories/${storyId}`).then(res =>
       res.json()
     );
     return result;
-  };
-
-  // set a label to the story
-  const addLabelToStory = (labelName:string) => {
-    const url = backendHost + `api/labels/${labelName}/` + storyId
-    const results = fetch(url, {method: 'POST'}).then(res => res.json());
-    return results;
-  }
-
-  // vote a label
-  const voteLabel = (labelName:string, userId: string) => {
-    const url = backendHost + `api/labels/${labelName}/` + storyId + '/' + userId
-    const results = fetch(url, {method: 'POST'}).then(res => res.json());
-    return results;
-  }
+  };  
 
   // showing or hiding the dropdown
   const addingHandler = () => {
@@ -50,6 +35,11 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
   }
 
   // selecting a label from the dropdown
+   const addLabelToStory = (labelName:string) => {
+    const url = backendHost + `api/labels/${labelName}/` + storyId
+    const results = fetch(url, {method: 'POST'}).then(res => res.json());
+    return results;
+  } 
   const selectingHandler = (selectedValue:string) => {
     const response = addLabelToStory(selectedValue)
     // just to update the UI
@@ -58,6 +48,11 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
   }
 
   // voting a label
+  const voteLabel = (labelName:string, userId: string) => {
+    const url = backendHost + `api/labels/${labelName}/` + storyId + '/' + userId
+    const results = fetch(url, {method: 'POST'}).then(res => res.json());
+    return results;
+  }
   const votingHandler = (labelName:string, userId: string) => {
     console.log('🤪 votingHandler', labelName, userId)
     const response = voteLabel(labelName, userId).then(res => res.json)
@@ -98,24 +93,22 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
           ):(
             labels.slice(0,6).map((label, index) => <li className={`labels-list_item`} key={index} >{label.name}</li>)
           )}
-          {/* About option to add label */}
-          { user ? (
-             addLabel ? (
-              <>
-              <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
-              <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
-                <option disabled>Select a label</option>
-                {allLabels?.map((label, index) => <option value={label.name} key={index}  >{label.name}</option>)}
-              </select>
-              </>
-            ):(
-              <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
-            )
-          ):null}
           </>
-        ):( 
-          user ? <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a> : null
-        )}    
+        ):null}    
+        {/* About option to add label */}
+        { user ? (
+           addLabel ? (
+            <>
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
+            <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
+              <option disabled>Select a label</option>
+              {allLabels?.map((label, index) => <option value={label.name} key={index} >{label.name}</option>)}
+            </select>
+            </>
+          ):(
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
+          )
+        ):null}
       </ul>     
     </div>
   )
