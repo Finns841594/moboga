@@ -1,3 +1,11 @@
+
+.header_navbtns {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 30%;
+	height: 100%;
+}
 .bn5 {
 	outline: none;
 	color: rgb(255, 255, 255);
@@ -64,7 +72,6 @@
 }
 
 .bn5:active:after {
-	background: transparent;
 	background: #242424;
 }
 
@@ -96,7 +103,10 @@
 	border-radius: 200px;
 	cursor: unset;
 	font-size: larger;
+	border-radius: 200px;
+	border: 1px solid #eaeaea;
 }
+
 .specialbtn:focus,
 .specialbtn:focus-visible {
 	outline: transparent;
