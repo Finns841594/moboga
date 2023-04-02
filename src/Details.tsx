@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Footer } from './components/Footer';
-import { Header } from './components/Header';
-import Labels from './components/Labels';
-import MediaCardsBooks from './components/MediaCardsBooks';
-import MediaCardsMovies from './components/MediaCardsMovies';
-import MediaCardsGames from './components/MediaCardsGames';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
-import { HeaderDetailMovie } from './components/HeaderDetailMovie';
+import { Header } from './components/Header';
+import { DetailsOfMovies } from './components/DetailsOfMovies';
+import { DetailsOfBooks } from './components/DetailsOfBooks';
+import { DetailsOfGames } from './components/DetailsOfGames';
+import './Details.css';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 

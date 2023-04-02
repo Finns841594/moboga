@@ -2,6 +2,11 @@ import axios from 'axios';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
+export const getStories = () => {
+	const result = fetch(backendHost + `api/stories`).then(res => res.json());
+	return result;
+};
+
 export const getReviewsByStoryId = async (storyId: string) => {
 	try {
 		const response = await axios

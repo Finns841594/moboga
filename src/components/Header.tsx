@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAuth from '../useAuth';
-import Dropdown from '../assets/dropdown-2.svg';
+import MenuBar from '../assets/menu-bar.svg';
+import { Dropdown } from './Dropdown';
 
 export const Header = () => {
-	const { authenticated, logout, isAuthenticated, user } = useAuth();
+	const { authenticated, isAuthenticated, user } = useAuth();
 	const [divDrop, setDivDrop] = useState(false);
 	useEffect(() => {
 		isAuthenticated();
 	}, []);
+
 	return (
 		<>
 			<div className="header">
@@ -20,32 +22,21 @@ export const Header = () => {
 							<h3 className="header-login-username">
 								Hi, <a href="/profile">{user?.name}</a>!
 							</h3>
-							<a onClick={() => setDivDrop(!divDrop)}>
-								<img className="dropdown-icon" src={Dropdown} />
-							</a>
-						</span>
-						{divDrop && (
-							<div className="dropdown-menu">
-								<ul className="dropdown-list">
-									<a href="/profile">
-										<li className="dropdown-item">My profile</li>
-									</a>
-									<a href="/">
-										<li className="dropdown-item">Home</li>
-									</a>
-									<a>
-										<li className="dropdown-item">About</li>
-									</a>
-									<a onClick={() => logout()}>
-										<li className="dropdown-item">Log out</li>
-									</a>
-								</ul>
+							<div className="picture-container">
+								<a onClick={() => setDivDrop(!divDrop)}>
+									{user?.picture ? (
+										<img className="profile-picture" src={user?.picture}></img>
+									) : (
+										<img className="dropdown-icon" src={MenuBar} />
+									)}
+								</a>
+								{divDrop && <Dropdown />}
 							</div>
-						)}
+						</span>
 					</div>
 				) : (
 					<div className="header-username">
-						<a href="/register">Register/Login</a>
+						<a href="/register">Register</a>/<a href="/login">Login</a>
 					</div>
 				)}
 			</div>
