@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import useAuth from './useAuth';
 import './Signup.css';
 import { Header } from './components/Header';
+import { GoogleLogin } from '@react-oauth/google';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const { login, invalidInput, setInvalidInput } = useAuth();
+	const { login, invalidInput, setInvalidInput, signInWithGoogle } = useAuth();
 
 	const handleSubmit = async (event: SyntheticEvent) => {
 		event.preventDefault();
@@ -17,10 +18,9 @@ export const Login = () => {
 	return (
 		<>
 			<Header />
-			<div className="signup-form">
+			<h3 className="signup-form__title">Login</h3>
+			<div className="signup-form-login">
 				<form onSubmit={handleSubmit}>
-					<h3 className="signup-form__title">Log In</h3>
-
 					<div className="signup-form__container">
 						<label className="signup-form__label">
 							Email:
@@ -60,11 +60,23 @@ export const Login = () => {
 					<br />
 					<button type="submit">Login</button>
 				</form>
-				<p>
-					If you don't have an account{' '}
-					<Link to={'/register'}>Register here</Link>
-				</p>
+				<div className="google-form">
+					<h4 className="signup-form__subtitle">Login with Google</h4>
+					<GoogleLogin
+						text="continue_with"
+						onSuccess={(credentialResponse: any) => {
+							signInWithGoogle(credentialResponse.credential);
+						}}
+						onError={() => {
+							console.log('Login Failed');
+						}}
+					/>
+				</div>
 			</div>
+			<p className="already-register">
+				If you don't have an account
+				<Link to={'/register'}> Register here</Link>
+			</p>
 		</>
 	);
 };
