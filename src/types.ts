@@ -11,7 +11,7 @@ type StoryObj = {
 type Label = {
 	id: string;
 	name: string;
-	voted_user: string[];
+	voted_users: string[];
 };
 
 type MediaInStory = {

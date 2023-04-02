@@ -31,13 +31,28 @@ export const Details = () => {
 
 	return (
 		<>
-			<Header />
-			{story && params.media === 'movies' ? (
-				<DetailsOfMovies story={story} />
-			) : story && params.media === 'books' ? (
-				<DetailsOfBooks story={story} />
-			) : story && params.media === 'games' ? (
-				<DetailsOfGames story={story} />
+		{params.media === 'movies' ? (<HeaderDetailMovie />):<Header />}
+			
+			{story ? (
+				<>
+					<h1>{story.storyname}</h1>
+					<Labels initialLabels={story.labels} storyId={story.id} />
+				</>
+			) : null}
+			{story && params.media ? (
+				params.media === 'movies' ? (
+					<>
+						<MediaCardsMovies medias={story['movies']} />
+					</>
+				) : params.media === 'books' ? (
+					<>
+						<MediaCardsBooks medias={story['books']} />
+					</>
+				) : (
+					<>
+						<MediaCardsGames medias={story['games']} />
+					</>
+				)
 			) : null}
 			{story && <ReviewsArea story={story} />}
 			<Footer />
