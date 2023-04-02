@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import ReviewsArea from './components/ReviewsArea';
 import { StoryObj } from './types';
-import { Header } from './components/Header';
-import { DetailsOfMovies } from './components/DetailsOfMovies';
-import { DetailsOfBooks } from './components/DetailsOfBooks';
-import { DetailsOfGames } from './components/DetailsOfGames';
 import './Details.css';
+import Labels from './components/Labels';
+import MediaCardsBooks from './components/MediaCardsBooks';
+import MediaCardsGames from './components/MediaCardsGames';
+import MediaCardsMovies from './components/MediaCardsMovies';
+import { HeaderInDetails } from './components/HeaderInDetails';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -31,7 +32,7 @@ export const Details = () => {
 
 	return (
 		<>
-		{params.media === 'movies' ? (<HeaderDetailMovie />):<Header />}
+		<HeaderInDetails />
 			
 			{story ? (
 				<>
