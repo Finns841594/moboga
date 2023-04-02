@@ -21,14 +21,14 @@ export const HeaderInDetails = () => {
 				</h1>
 
 				<div className='header_navbtns'>
-				<a href={'../books/' + params.id} className={params.media === 'movies' ? 'specialbtn' : 'bn5'}>
-					<p className="p">Movies</p>
+				<a href={'../movies/' + params.id} className={params.media === 'movies' ? 'specialbtn' : 'bn5'}>
+					<p className="bn5_textcontent">Movies</p>
 				</a>
 				<a href={'../books/' + params.id} className={params.media === 'books' ? 'specialbtn' : 'bn5'}>
-					<p className="p">Books</p>
+					<p className="bn5_textcontent">Books</p>
 				</a>
 				<a href={'../games/' + params.id} className={params.media === 'games' ? 'specialbtn' : 'bn5'}>
-					<p className="p">Games</p>
+					<p className="bn5_textcontent">Games</p>
 				</a>
 
 				</div>

@@ -55,6 +55,7 @@ type LabelCardObj = {
 	backgroundColor: string;
 	textColor: string;
 	labelName: string;
+	backgroundImage: string;
 	stories: StoryObj[];
 };
 
