@@ -11,6 +11,7 @@
 	width: 300px;
 	margin-inline: 5px;
 	flex: 0 0 auto;
+	cursor: pointer;
 }
 
 .media__card__title {

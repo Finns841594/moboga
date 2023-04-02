@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useAuth from '../useAuth';
 import MenuBar from '../assets/menu-bar.svg';
 import { Dropdown } from './Dropdown';
+import './Header.css';
 
 export const Header = () => {
 	const { authenticated, isAuthenticated, user } = useAuth();
@@ -40,7 +41,6 @@ export const Header = () => {
 						<a href="/register">Register</a>/<a href="/login">Login</a>
 					</div>
 				)}
-				
 			</div>
 		</>
 	);
