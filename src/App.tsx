@@ -6,7 +6,7 @@ import Map from './Map';
 import { Signup } from './Signup';
 import { Login } from './Login';
 import { Profile } from './Profile';
-import AddStory from './components/AddStory';
+import AddStory from './AddStory';
 
 function App() {
 	return (

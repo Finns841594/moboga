@@ -77,7 +77,7 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
   }, []);
 
   useEffect(() => {
-    getStories().then(results => setLabels(results.labels));
+    getStories().then(story => setLabels(story.labels));
   }, [update]);
 
   return (
@@ -101,7 +101,9 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
             <>
             <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
             <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
-              <option disabled>Select a label</option>
+              <option disabled>Create a label</option>
+              <option value="new">New Label...</option>
+              <option disabled>Select an existing label</option>
               {allLabels?.map((label, index) => <option value={label.name} key={index} >{label.name}</option>)}
             </select>
             </>
