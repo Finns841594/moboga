@@ -4,30 +4,28 @@ import { LabelCardObj } from '../types';
 interface ILabelCardProp {cardInfo: LabelCardObj}
 
 export const LabelCard = ({cardInfo}:ILabelCardProp) => {
-	const color = '#1DA1F2';
 	const [isOpen, setIsOpen] = useState(false);
 	const handleToggle = () => setIsOpen(!isOpen);
 
+	// capitalise the first letter of the label name
+	const capitalise = (str: string) => {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	};
+
+
+	console.log('👀 backgournd image:', cardInfo.backgroundImage)
 	return (
 		<>
-			<div className="media-card" style={{ backgroundColor: cardInfo.backgroundColor }}>
+			<div className="media-card" style={{ backgroundImage: `url(${cardInfo.backgroundImage})`, backgroundSize: 'cover' }} >
 				<div className="media-card-header" onClick={handleToggle}>
 					<h2 style={{ color: cardInfo.textColor }} onClick={handleToggle}>
-						{cardInfo.labelName}
+						{capitalise(cardInfo.labelName)}
 					</h2>
 				</div>
 				<div>
 					{isOpen ? (
-						<ul className={`media-card-list ${isOpen ? 'open' : ''}`}>
-							{/* <li className="media-card-item">
-								<a href={`./map/2`}>The Last Of Us</a>
-							</li>
-							<li className="media-card-item">
-								<a href={`./map/4`}>Resident Evil</a>
-							</li>
-							<li className="media-card-item">
-								<a href={`./map/3`}>Mad Max</a>
-							</li> */}
+						<ul
+							className={`media-card-list ${isOpen ? 'open' : ''}`}>
               {cardInfo.stories.length > 0 ? (
                 cardInfo.stories.map(story => <li className="media-card-item"><a href={`/map/${story.id}`}>{story.storyname}</a></li>)
               ):null}
@@ -38,3 +36,5 @@ export const LabelCard = ({cardInfo}:ILabelCardProp) => {
 		</>
 	);
 };
+
+// style={{ backgroundColor: cardInfo.backgroundColor }}

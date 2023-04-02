@@ -34,9 +34,9 @@
 }
 .search__list-item:hover {
 	background-color: rgb(70, 70, 70);
-	color: #646cff;
+	color: #db3dff;
 }
 .selected {
 	background-color: rgb(70, 70, 70);
-	color: #646cff;
+	color: #db3dff;
 }

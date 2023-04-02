@@ -99,7 +99,7 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
         { user ? (
            addLabel ? (
             <>
-            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
             <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
               <option disabled>Create a label</option>
               <option value="new">New Label...</option>
@@ -108,7 +108,7 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
             </select>
             </>
           ):(
-            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><h2>+</h2></a>
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
           )
         ):null}
       </ul>     

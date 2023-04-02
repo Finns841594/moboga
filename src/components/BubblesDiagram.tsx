@@ -130,10 +130,9 @@ export const BubblesDiagram = ({
 					{
 						font: 'bold 12pt sans-serif',
 						stroke: 'white',
-						margin: 3,
+						margin: 0,
 						click: (e: any, obj: any) => {
 							// console.log('👀👀👀👀 story name', obj.bc);
-
 							let storyId 
 							const story = allStories.find(story => story.storyname === obj.bc)
 							if (story) { 
@@ -142,7 +141,10 @@ export const BubblesDiagram = ({
 								window.open(`/details/movies/${storyId}`)
 								}
 							},
-
+					},
+					{
+						mouseEnter: (e:any, obj:any) => { obj.font = 'bolder 12pt sans-serif'; obj.stroke = "#db3dff";},
+						mouseLeave: (e:any, obj:any) => { obj.font = 'bold 12pt sans-serif'; obj.stroke = "white";},
 					},
 					new go.Binding('text', 'key')
 				)
