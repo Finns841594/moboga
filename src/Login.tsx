@@ -18,9 +18,9 @@ export const Login = () => {
 	return (
 		<>
 			<Header />
-			<div className="signup-form">
+			<h3 className="signup-form__title">Login</h3>
+			<div className="signup-form-login">
 				<form onSubmit={handleSubmit}>
-					<h3 className="signup-form__title">Log In</h3>
 					<div className="signup-form__container">
 						<label className="signup-form__label">
 							Email:
@@ -54,29 +54,29 @@ export const Login = () => {
 								}}
 							/>
 						</label>
-
 						<br />
-						<h4>Or Log in with Google</h4>
-						{/* <GoogleLogin
-							text="continue_with"
-							type="icon"
-							onSuccess={(credentialResponse: any) => {
-								signInWithGoogle(credentialResponse.credential);
-							}}
-							onError={() => {
-								console.log('Login Failed');
-							}}
-						/> */}
 					</div>
 					{invalidInput && <p className="invalid-input">{invalidInput}</p>}
 					<br />
 					<button type="submit">Login</button>
 				</form>
-				<p>
-					If you don't have an account{' '}
-					<Link to={'/register'}>Register here</Link>
-				</p>
+				<div className="google-form">
+					<h4 className="signup-form__subtitle">Login with Google</h4>
+					<GoogleLogin
+						text="continue_with"
+						onSuccess={(credentialResponse: any) => {
+							signInWithGoogle(credentialResponse.credential);
+						}}
+						onError={() => {
+							console.log('Login Failed');
+						}}
+					/>
+				</div>
 			</div>
+			<p className="already-register">
+				If you don't have an account
+				<Link to={'/register'}> Register here</Link>
+			</p>
 		</>
 	);
 };

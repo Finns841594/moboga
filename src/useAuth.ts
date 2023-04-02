@@ -26,7 +26,7 @@ function useAuth() {
 			});
 			localStorage.setItem('token', res.data);
 			setAuthenticated(true);
-			navigate(-2);
+			navigate('/');
 			console.log('LOG IN SUCCESSFULLY!!!! 🥳');
 		} catch (error: any) {
 			console.error(error.response.data);
@@ -41,7 +41,7 @@ function useAuth() {
 			});
 			localStorage.setItem('token', res.data);
 			setAuthenticated(true);
-			navigate(-2);
+			navigate('/');
 			console.log('LOG IN SUCCESSFULLY!!!! 🥳');
 		} catch (error: any) {
 			console.error(error.response.data);
@@ -73,7 +73,7 @@ function useAuth() {
 			if (response.status === 200) {
 				localStorage.setItem('token', response.data);
 				setAuthenticated(true);
-				navigate(-1);
+				navigate('/');
 				console.log('REGISTER SUCCESSFULLY!!!! 🥳');
 			} else {
 				console.log('error while register');
@@ -94,7 +94,7 @@ function useAuth() {
 			if (response.status === 201) {
 				localStorage.setItem('token', response.data);
 				setAuthenticated(true);
-				navigate(-1);
+				navigate('/');
 				console.log('REGISTER SUCCESSFULLY!!!! 🥳');
 			} else {
 				console.log('error while register');
@@ -106,7 +106,6 @@ function useAuth() {
 	};
 
 	const isAuthenticated = () => {
-		//in progress
 		const token = localStorage.getItem('token');
 		axios
 			.get(backendHost + 'api/users', {
@@ -118,7 +117,7 @@ function useAuth() {
 				setUser(res.data);
 			})
 			.catch(error => {
-				console.error('WHAT IS LOVE?', error);
+				console.error('', error);
 			});
 		if (token) {
 			setAuthenticated(true);

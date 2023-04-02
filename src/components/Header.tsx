@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAuth from '../useAuth';
 import MenuBar from '../assets/menu-bar.svg';
 import { Dropdown } from './Dropdown';
@@ -9,6 +9,7 @@ export const Header = () => {
 	useEffect(() => {
 		isAuthenticated();
 	}, []);
+
 	return (
 		<>
 			<div className="header">

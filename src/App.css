@@ -139,12 +139,12 @@
 	transition: width 0.3s ease-in-out;
 }
 .media-card-header {
-	cursor: poiner;
+	cursor: pointer;
 }
 
 .media-card-list {
 	list-style: none;
-	text-align: left;
+	text-align: center;
 	max-height: 0px;
 	overflow: hidden;
 	cursor: pointer;
