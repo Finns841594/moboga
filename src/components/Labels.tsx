@@ -112,15 +112,13 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
 	}, [update]);
 
   return (
-    <div>
+    <div className='labels-area'>
       <div className="labels-intro">
         <h2>Labels:</h2>
         <p>Click the label to vote the ones you like!</p>
       </div>
       <ul className="labels-list">
         {labels.length > 0 ? ( <> 
-          {/* showing top 6 labels */}
-          {/* {console.log('🤪 Incoming info',labels, user)} */}
           {/* About the labels */}
           { user ? (
             labels.slice(0,6).map((label, index) => <li key={index}><LabelComponent label={label} userId={user.userId} index={index} votingHandler={votingHandler} removeHandler={removeHandler} /></li>)
@@ -132,7 +130,7 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
         {/* About option to add label */}
         { user ? (
            addLabel ? (
-            <>
+            <div className='addlabel-select-area'>
             <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
             <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
               <option disabled>Create a label</option>
@@ -140,9 +138,11 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
               <option disabled selected>Select an existing label</option>
               {allLabels?.map((label, index) => <option value={label.name} key={index} >{label.name}</option>)}
             </select>
-            </>
+            </div>
           ):(
-            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
+            <div className='addlabel-select-area'>
+              <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
+            </div>
           )
           ):null}
         {/* input area for adding a label to database */}
@@ -155,7 +155,7 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
           </form>
           </>)
         ):null}
-      </ul>     
+      </ul>    
     </div>
   )
 }

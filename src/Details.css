@@ -154,6 +154,7 @@
 .details-title-labels-container {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .details-title {
