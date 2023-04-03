@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import useAuth from '../useAuth';
+import ImageWithButton from './ImageWithButton';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -18,6 +21,9 @@ type MediaObj = {
 
 const MediaCardMovie = ({ mediaOid }: IMediaCardProp) => {
 	const [movies, setMovies] = useState<MediaObj>();
+	const params = useParams();
+	const { isAuthenticated, user } = useAuth();
+
 
 	const getStories = () => {
 		const result = fetch(backendHost + `api/medias/${mediaOid}`).then(res =>
@@ -26,8 +32,18 @@ const MediaCardMovie = ({ mediaOid }: IMediaCardProp) => {
 		return result;
 	};
 
+	// Delete media from the story
+	const deleteHandler= () => {
+		console.log('deleting media with oid: ', mediaOid, ' from the story', params.id)
+    const url = backendHost + `api/removemedias/${params.id}/` + mediaOid
+    const results = fetch(url, {method: 'DELETE'}).then(res => res.json());
+		console.log(results)
+		return results;
+	}
+
 	useEffect(() => {
 		getStories().then(results => setMovies(results));
+		isAuthenticated();
 	}, []);
 
 	return (
@@ -35,7 +51,8 @@ const MediaCardMovie = ({ mediaOid }: IMediaCardProp) => {
 			{movies ? (
 				<>
 					<h3 className="media__card__title">{movies.name}</h3>
-					<img src={movies.imgurl} className="img" />
+					{ user?.userId !== 'Funder F' ? (<img src={movies.imgurl} className="img" />) :
+					(<ImageWithButton imageUrl={movies.imgurl} deleteHandler={deleteHandler} />)}
 					{movies.released ? (
 						<p>
 							<strong>Released date:</strong> {movies.released}

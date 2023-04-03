@@ -11,11 +11,14 @@ interface ILabelsProp {
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
-const Labels = ({ initialLabels, storyId }: ILabelsProp) => {
-	const [labels, setLabels] = useState<Label[]>(initialLabels);
-	const [addLabel, setAddLabel] = useState(false);
-	const [allLabels, setAllLabels] = useState<Label[]>();
-	const [update, setUpdate] = useState(false);
+const Labels = ({initialLabels, storyId}:ILabelsProp) => {
+  const [labels, setLabels] = useState<Label[]>(initialLabels);
+  const [addLabel, setAddLabel] = useState(false)
+  const [addNewLabelToDB, setAddNewLabelToDB] = useState(false)
+  const [addNewLabelToDBLabelContent, setAddNewLabelToDBLabelContent] = useState('')
+  const [allLabels, setAllLabels] = useState<Label[]>();
+  const [update, setUpdate] = useState(false)
+  
 
 	const { isAuthenticated, user } = useAuth();
 
@@ -37,43 +40,67 @@ const Labels = ({ initialLabels, storyId }: ILabelsProp) => {
 		setAddLabel(!addLabel);
 	};
 
-	// selecting a label from the dropdown
-	const addLabelToStory = (labelName: string) => {
-		const url = backendHost + `api/labels/${labelName}/` + storyId;
-		const results = fetch(url, { method: 'POST' }).then(res => res.json());
-		return results;
-	};
-	const selectingHandler = (selectedValue: string) => {
-		const response = addLabelToStory(selectedValue);
-		// just to update the UI
-		setUpdate(!update);
-		setAddLabel(!addLabel);
-	};
+  // selecting a label from the dropdown
+   const addLabelToStory = (labelName:string) => {
+    const url = backendHost + `api/labels/${labelName}/` + storyId
+    const results = fetch(url, {method: 'POST'}).then(res => res.json());
+    return results;
+  } 
+  // adding a label to the story
+  const selectingHandler = async (selectedValue:string) => {
+    if (selectedValue !== 'New Label...') {
+    const response = await addLabelToStory(selectedValue)
+    // just to update the UI
+    console.log('🤪 adding label: ', selectedValue, 'to story: ', storyId, 'with response: ', response)
+    setUpdate(!update)
+    setAddLabel(!addLabel)
+    } else {
+      setAddNewLabelToDB(true)
+      setAddLabel(!addLabel)
+    }
+  }
 
-	// voting a label
-	const voteLabel = (labelName: string, userId: string) => {
-		const url =
-			backendHost + `api/labels/${labelName}/` + storyId + '/' + userId;
-		const results = fetch(url, { method: 'POST' }).then(res => res.json());
-		return results;
-	};
-	const votingHandler = (labelName: string, userId: string) => {
-		console.log('🤪 votingHandler', labelName, userId);
-		const response = voteLabel(labelName, userId).then(res => res.json);
-		setUpdate(!update);
-	};
+  // adding a new label to the database
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddNewLabelToDBLabelContent(e.target.value);
+  };
+  const addNewLabelToDatabase = (labelName:string) => {
+    const url = backendHost + `api/labels/` + labelName
+    const results = fetch(url, {method: 'POST'}).then(res => res.json());
+    return results;
+  }
+  const addLabelToDBHandler = (event:React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setAddNewLabelToDB(false)
+    if (addNewLabelToDBLabelContent !== '') {
+    const response = addNewLabelToDatabase(addNewLabelToDBLabelContent)
+    console.log('🤪 adding a new label to the database: ', response)}
+  }
 
-	// removing a label from the story
-	const removeLabelFromStory = (labelName: string, storyId: string) => {
-		const url = backendHost + `api/labels/${labelName}/` + storyId;
-		const results = fetch(url, { method: 'DELETE' }).then(res => res.json());
-		return results;
-	};
-	const removeHandler = (labelName: string) => {
-		console.log('🤪 removing label: ', labelName, 'from story: ', storyId, '');
-		const response = removeLabelFromStory(labelName, storyId);
-		setUpdate(!update);
-	};
+  // voting a label
+  const voteLabel = async (labelName:string, userId: string) => {
+    const url = backendHost + `api/labels/${labelName}/` + storyId + '/' + userId
+    const results = await fetch(url, {method: 'POST'})
+    return results;
+  }
+  const votingHandler = async (labelName:string, userId: string) => {
+    console.log('🤪 votingHandler', labelName, userId)
+    const response = await voteLabel(labelName, userId)
+    console.log('🤪 votingHandler response', response)
+    setUpdate(!update)
+  }
+
+  // removing a label from the story
+  const removeLabelFromStory = (labelName:string, storyId:string) => {
+    const url = backendHost + `api/labels/${labelName}/` + storyId
+    const results = fetch(url, {method: 'DELETE'}).then(res => res.json());
+    return results;
+  }
+  const removeHandler = async (labelName:string) => {
+    console.log('🤪 removing label: ', labelName, 'from story: ', storyId, '')
+    const response = await removeLabelFromStory(labelName, storyId)
+    setUpdate(!update)
+  }
 
 	useEffect(() => {
 		isAuthenticated();
@@ -84,69 +111,54 @@ const Labels = ({ initialLabels, storyId }: ILabelsProp) => {
 		getStories().then(story => setLabels(story.labels));
 	}, [update]);
 
-	return (
-		<div className="labels-area">
-			{labels.length > 0 ? (
-				<>
-					<ul className="labels-list">
-						{/* About the labels */}
-						{user
-							? labels.slice(0, 6).map((label, index) => (
-									<li>
-										<LabelComponent
-											label={label}
-											userId={user.userId}
-											index={index}
-											votingHandler={votingHandler}
-											removeHandler={removeHandler}
-										/>
-									</li>
-							  ))
-							: labels.slice(0, 6).map((label, index) => (
-									<li className={`labels-list_item`} key={index}>
-										{label.name}
-									</li>
-							  ))}
-					</ul>
-				</>
-			) : null}
-			{/* About option to add label */}
-			{user ? (
-				addLabel ? (
-					<div className="addlabel-select-area">
-						<a onClick={() => addingHandler()} style={{ marginLeft: '5px' }}>
-							<i
-								className="fa-solid fa-plus fa-2xl"
-								style={{ color: '#db3dff' }}
-							></i>
-						</a>
-						<select
-							className="label-list_dropdown"
-							onChange={e => selectingHandler(e.target.value)}
-						>
-							<option disabled>Create a label</option>
-							<option value="new">New Label...</option>
-							<option disabled>Select an existing label</option>
-							{allLabels?.map((label, index) => (
-								<option value={label.name} key={index}>
-									{label.name}
-								</option>
-							))}
-						</select>
-					</div>
-				) : (
-					<div className="addlabel-select-area">
-						<a onClick={() => addingHandler()} style={{ marginLeft: '5px' }}>
-							<i
-								className="fa-solid fa-plus fa-2xl"
-								style={{ color: '#db3dff' }}
-							></i>
-						</a>
-					</div>
-				)
-			) : null}
-		</div>
-	);
-};
+  return (
+    <div>
+      <div className="labels-intro">
+        <h2>Labels:</h2>
+        <p>Click the label to vote the ones you like!</p>
+      </div>
+      <ul className="labels-list">
+        {labels.length > 0 ? ( <> 
+          {/* showing top 6 labels */}
+          {/* {console.log('🤪 Incoming info',labels, user)} */}
+          {/* About the labels */}
+          { user ? (
+            labels.slice(0,6).map((label, index) => <li key={index}><LabelComponent label={label} userId={user.userId} index={index} votingHandler={votingHandler} removeHandler={removeHandler} /></li>)
+          ):(
+            labels.slice(0,6).map((label, index) => <li className={`labels-list_item`} key={index} >{label.name}</li>)
+          )}
+          </>
+        ):null}    
+        {/* About option to add label */}
+        { user ? (
+           addLabel ? (
+            <>
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
+            <select className="label-list_dropdown" onChange={(e) => selectingHandler(e.target.value)} >
+              <option disabled>Create a label</option>
+              <option value="New Label...">New Label...</option>
+              <option disabled selected>Select an existing label</option>
+              {allLabels?.map((label, index) => <option value={label.name} key={index} >{label.name}</option>)}
+            </select>
+            </>
+          ):(
+            <a onClick={() => addingHandler()} style={{marginLeft:'5px'}}><i className="fa-solid fa-plus fa-2xl" style={{color: "#db3dff"}}></i></a>
+          )
+          ):null}
+        {/* input area for adding a label to database */}
+        { user ? (
+          addNewLabelToDB && (
+          <>
+          <form onSubmit={addLabelToDBHandler} style={{ display:'flex', flexDirection:'row', marginLeft:'10px'}}>
+            <input type="text" placeholder="New Label..." style={{display: addNewLabelToDB ? 'block' : 'none'}} className='labels_addbar' onChange={handleChange}></input>
+            <button style={{display: addNewLabelToDB ? 'block' : 'none'}} type='submit'>Add</button>
+          </form>
+          </>)
+        ):null}
+      </ul>     
+    </div>
+  )
+}
+
 
 export default Labels;
