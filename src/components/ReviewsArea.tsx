@@ -56,7 +56,7 @@ const ReviewsArea = ({ story }: ReviewsAreaProps) => {
 					Be the first to review this story!
 				</h2>
 			)}
-			<section>
+			<section className="review-form-area">
 				<ReviewForm update={updateReviews} story={story} />
 			</section>
 		</div>

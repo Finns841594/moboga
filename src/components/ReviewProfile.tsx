@@ -43,12 +43,7 @@ export const ReviewProfile = ({
 					<div className="edit-container">
 						<textarea
 							onChange={e => setNewContent(e.target.value)}
-							style={{
-								width: '800px',
-								maxWidth: '100%',
-								height: '60px',
-								borderRadius: '5px',
-							}}
+							className="edit-container__textarea"
 							value={newContent}
 						></textarea>
 						<button className="reviews-button save" onClick={handleEdit}>

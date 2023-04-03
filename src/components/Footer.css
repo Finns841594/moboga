@@ -7,6 +7,8 @@
 	border-top: 1px solid #eaeaea;
 	font-size: smaller;
 	margin-top: 70px;
+	width: 100%;
+	margin-inline: 20px;
 }
 .footer-text {
 	margin: 0px;

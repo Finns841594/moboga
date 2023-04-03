@@ -35,11 +35,13 @@ export const Profile = () => {
 			{authenticated && (
 				<>
 					<Header />
-					<div className="" style={{marginTop:'40px'}}>
-						<h2 style={{ textAlign: 'left', marginBottom:'30px' }}>Manage your reviews:</h2>
-						<section style={{ alignContent: 'center'}}>
+					<div className="" style={{ marginTop: '40px' }}>
+						<h2 style={{ textAlign: 'left', marginBottom: '30px' }}>
+							Manage your reviews:
+						</h2>
+						<section style={{ alignContent: 'center' }}>
 							{reviews.length > 0 ? (
-								<ul>
+								<ul style={{ padding: 0 }}>
 									{reviews.map((review: any) => {
 										return (
 											<ReviewProfile
