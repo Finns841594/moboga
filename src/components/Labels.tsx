@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react"
-import { StoryObj, Label } from "../types"
-import useAuth from "../useAuth";
-import { LabelComponent } from "./Label";
+import { useState, useEffect } from 'react';
+import { StoryObj, Label } from '../types';
+import useAuth from '../useAuth';
+import { LabelComponent } from './Label';
 import './Labels.css';
 
-interface ILabelsProp {initialLabels: Label[], storyId: string}
+interface ILabelsProp {
+	initialLabels: Label[];
+	storyId: string;
+}
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -16,25 +19,26 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
   const [allLabels, setAllLabels] = useState<Label[]>();
   const [update, setUpdate] = useState(false)
   
+
 	const { isAuthenticated, user } = useAuth();
 
-  // getting all labels from the backend
-  const getALLLabels = () => {
-    const results = fetch(backendHost + `api/labels`).then(res => res.json());
-    return results;
-  }
-  // getting the current story in oder to get labels
-  const getStories = () => {
-    const result = fetch(backendHost + `api/stories/${storyId}`).then(res =>
-      res.json()
-    );
-    return result;
-  };  
+	// getting all labels from the backend
+	const getALLLabels = () => {
+		const results = fetch(backendHost + `api/labels`).then(res => res.json());
+		return results;
+	};
+	// getting the current story in oder to get labels
+	const getStories = () => {
+		const result = fetch(backendHost + `api/stories/${storyId}`).then(res =>
+			res.json()
+		);
+		return result;
+	};
 
-  // showing or hiding the dropdown
-  const addingHandler = () => {
-    setAddLabel(!addLabel)
-  }
+	// showing or hiding the dropdown
+	const addingHandler = () => {
+		setAddLabel(!addLabel);
+	};
 
   // selecting a label from the dropdown
    const addLabelToStory = (labelName:string) => {
@@ -98,14 +102,14 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
     setUpdate(!update)
   }
 
-  useEffect(() => {
-    isAuthenticated();
-    getALLLabels().then(results => setAllLabels(results));
-  }, []);
+	useEffect(() => {
+		isAuthenticated();
+		getALLLabels().then(results => setAllLabels(results));
+	}, []);
 
-  useEffect(() => {
-    getStories().then(story => setLabels(story.labels));
-  }, [update]);
+	useEffect(() => {
+		getStories().then(story => setLabels(story.labels));
+	}, [update]);
 
   return (
     <div>
@@ -156,4 +160,5 @@ const Labels = ({initialLabels, storyId}:ILabelsProp) => {
   )
 }
 
-export default Labels
+
+export default Labels;

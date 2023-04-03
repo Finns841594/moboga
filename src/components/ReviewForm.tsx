@@ -53,26 +53,27 @@ export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 	return (
 		<>
 			{authenticated && (
-				<form onSubmit={handleSubmit}>
+				<>
 					<h2 style={{ textAlign: 'left' }}>Add a new review:</h2>
-					<div className="add-review-area">
-						<textarea
-							required
-							placeholder="Write here your review"
-							value={content}
-							onChange={e => setContent(e.target.value)}
-							className="review__text-input"
-						/>
-						<div>
-							<Rating
-								onClick={handleRating}
-								onPointerEnter={onPointerEnter}
-								onPointerLeave={onPointerLeave}
-								onPointerMove={onPointerMove}
-								transition={true}
-								showTooltip={true}
+					<form className="review-form" onSubmit={handleSubmit}>
+						<div className="add-review-area">
+							<textarea
+								required
+								placeholder="Write here your review"
+								value={content}
+								onChange={e => setContent(e.target.value)}
+								className="review__text-input"
 							/>
-							{/* <label htmlFor="rating">Rating:</label>
+							<div>
+								<Rating
+									onClick={handleRating}
+									onPointerEnter={onPointerEnter}
+									onPointerLeave={onPointerLeave}
+									onPointerMove={onPointerMove}
+									transition={true}
+									showTooltip={true}
+								/>
+								{/* <label htmlFor="rating">Rating:</label>
 							<input
 								id="rating"
 								type="number"
@@ -83,10 +84,11 @@ export const ReviewForm = ({ update, story }: IReviewFormProp) => {
 								onChange={e => setRating(e.target.value)}
 								className="review__rate-input"
 							/> */}
+							</div>
+							<button type="submit">Add</button>
 						</div>
-						<button type="submit">Add</button>
-					</div>
-				</form>
+					</form>
+				</>
 			)}
 		</>
 	);

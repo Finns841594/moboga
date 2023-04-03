@@ -3,7 +3,7 @@ import useAuth from './useAuth';
 import './Signup.css';
 import { Header } from './components/Header';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
-// import { useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 
 export const Signup = () => {
 	const [firstName, setFirstName] = useState('');
@@ -17,30 +17,13 @@ export const Signup = () => {
 		signUp(firstName, lastName, email, password);
 	};
 
-	// const login = useGoogleLogin({
-	// 	onSuccess: (tokenResponse: any) =>
-	// 		signUpWithGoogle(tokenResponse.access_token),
-	// });
+	const login = useGoogleLogin({
+		onSuccess: (tokenResponse: any) =>
+			signUpWithGoogle(tokenResponse.access_token),
+	});
 
 	return (
 		<>
-			{/* <GoogleLogin
-							text="continue_with"
-							onSuccess={(credentialResponse) => {
-								console.log(credentialResponse);
-							}}
-							onError={() => {
-								console.log('Login Failed');
-							}}
-						/> */}
-			{/* <button className="google-bton" onClick={() => login()}>
-					<img
-						className="google-icon"
-						src="../src/assets/search.png"
-						alt="google-icon"
-					/>
-					Sign up with Google
-				</button> */}
 			<Header />
 			<h3 className="signup-form__title">Sign Up</h3>
 			<div className="signup-form">

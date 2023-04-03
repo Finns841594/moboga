@@ -1,23 +1,33 @@
 .labels-intro {
   text-align: left;
   margin-left: 10px;
+  
+.labels-area {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	margin-bottom: 30px;
+	flex: 1 1 100%;
 }
 
 .labels-list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 10px;
-  margin: 0;
-  list-style: none;
-  height: 50px;
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 100%;
+	align-items: center;
+	padding: 0 10px;
+	margin: 0;
+	list-style: none;
+	height: 50px;
+	align-self: flex-start;
 }
 
 .labels-list_item {
-  margin-inline: 10px;
-  border: 2px solid #eaeaea;
-  border-radius: 10px;
-  padding: 5px 10px;
+	margin-inline: 10px;
+	border: 2px solid #eaeaea;
+	border-radius: 10px;
+	padding: 5px 10px;
 }
 
 .labels_addbar {
@@ -33,21 +43,43 @@
 }
 
 .remove-button {
-  padding:0px 5px;
-  margin-left: 8px;
+	padding: 0px 5px;
+	margin-left: 8px;
 }
 
 .label-list_dropdown {
-  min-width: 100px;
-  height: 35px;
-  border: 2px solid #eaeaea;
-  border-radius: 10px;
-  background: transparent;
-  color: #eaeaea;
-  margin-left: 30px;
-  padding-inline: 20px;
+	min-width: 100px;
+	height: 35px;
+	border: 2px solid #eaeaea;
+	border-radius: 10px;
+	background: transparent;
+	color: #eaeaea;
+	margin-left: 30px;
+	padding-inline: 20px;
 }
 
 .voted {
-  box-shadow: 1px 1px 5px 1px rgba(217, 61, 253, 0.659);
+	box-shadow: 1px 1px 5px 1px rgba(217, 61, 253, 0.659);
+}
+
+.addlabel-select-area {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+	.labels-area {
+		flex-direction: column;
+		margin-bottom: 0px;
+	}
+	.labels-list {
+		flex-wrap: wrap;
+		margin-bottom: 15px;
+	}
+	.labels-list_item {
+		margin-inline: 5px;
+		font-size: smaller;
+	}
 }

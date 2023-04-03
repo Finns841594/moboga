@@ -17,6 +17,12 @@ const Home = () => {
 			<Header />
 			<SearchArea stories={stories} />
 			<CardsArea stories={stories} />
+			<div style={{ marginTop: '20px' }}>
+				<h2>
+					Didn't find your story? <br />
+					<a href="/addstory">Create it!</a>
+				</h2>
+			</div>
 			<Footer />
 		</>
 	);
