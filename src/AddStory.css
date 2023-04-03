@@ -1,0 +1,49 @@
+.addstory-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	flex: 1 1 100%;
+}
+.addstory__search-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	flex: 1 1 100%;
+}
+.addstory-title {
+	font-size: 40px;
+	width: 100%;
+}
+.addstory-subtitle {
+	font-size: 38px;
+	margin: 0px;
+	text-align: left;
+	width: 100%;
+	margin-left: 60px;
+	margin-top: 40px;
+}
+
+.addstory-buttons {
+	margin-left: 10px;
+	margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+	.addstory-title {
+		font-size: 30px;
+	}
+	.search_searchbar {
+		height: 30px;
+	}
+	.addstory-subtitle {
+		font-size: 20px;
+		margin: 0;
+		margin-top: 10px;
+	}
+	.media__cards-area {
+		margin-top: 0;
+	}
+}
