@@ -145,10 +145,15 @@
 	font-size: smaller;
 }
 
+.details-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .details-title-labels-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
 }
 
 .details-title {

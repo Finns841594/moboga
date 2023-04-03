@@ -24,23 +24,6 @@ export const Signup = () => {
 
 	return (
 		<>
-			<GoogleLogin
-				text="continue_with"
-				onSuccess={credentialResponse => {
-					console.log(credentialResponse);
-				}}
-				onError={() => {
-					console.log('Login Failed');
-				}}
-			/>
-			<button className="google-bton" onClick={() => login()}>
-				<img
-					className="google-icon"
-					src="../src/assets/search.png"
-					alt="google-icon"
-				/>
-				Sign up with Google
-			</button>
 			<Header />
 			<h3 className="signup-form__title">Sign Up</h3>
 			<div className="signup-form">

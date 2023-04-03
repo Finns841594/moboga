@@ -128,6 +128,7 @@
 		flex-direction: row;
 		overflow-y: hidden;
 		overflow-x: scroll;
+		justify-content: flex-start;
 	}
 	.home-label-card {
 		width: 350px;

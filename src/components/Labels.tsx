@@ -85,12 +85,10 @@ const Labels = ({ initialLabels, storyId }: ILabelsProp) => {
 	}, [update]);
 
 	return (
-		<div>
-			<ul className="labels-list">
-				{labels.length > 0 ? (
-					<>
-						{/* showing top 6 labels */}
-						{console.log('🤪 Incoming info', labels, user)}
+		<div className="labels-area">
+			{labels.length > 0 ? (
+				<>
+					<ul className="labels-list">
 						{/* About the labels */}
 						{user
 							? labels.slice(0, 6).map((label, index) => (
@@ -109,42 +107,44 @@ const Labels = ({ initialLabels, storyId }: ILabelsProp) => {
 										{label.name}
 									</li>
 							  ))}
-					</>
-				) : null}
-				{/* About option to add label */}
-				{user ? (
-					addLabel ? (
-						<>
-							<a onClick={() => addingHandler()} style={{ marginLeft: '5px' }}>
-								<i
-									className="fa-solid fa-plus fa-2xl"
-									style={{ color: '#db3dff' }}
-								></i>
-							</a>
-							<select
-								className="label-list_dropdown"
-								onChange={e => selectingHandler(e.target.value)}
-							>
-								<option disabled>Create a label</option>
-								<option value="new">New Label...</option>
-								<option disabled>Select an existing label</option>
-								{allLabels?.map((label, index) => (
-									<option value={label.name} key={index}>
-										{label.name}
-									</option>
-								))}
-							</select>
-						</>
-					) : (
+					</ul>
+				</>
+			) : null}
+			{/* About option to add label */}
+			{user ? (
+				addLabel ? (
+					<div className="addlabel-select-area">
 						<a onClick={() => addingHandler()} style={{ marginLeft: '5px' }}>
 							<i
 								className="fa-solid fa-plus fa-2xl"
 								style={{ color: '#db3dff' }}
 							></i>
 						</a>
-					)
-				) : null}
-			</ul>
+						<select
+							className="label-list_dropdown"
+							onChange={e => selectingHandler(e.target.value)}
+						>
+							<option disabled>Create a label</option>
+							<option value="new">New Label...</option>
+							<option disabled>Select an existing label</option>
+							{allLabels?.map((label, index) => (
+								<option value={label.name} key={index}>
+									{label.name}
+								</option>
+							))}
+						</select>
+					</div>
+				) : (
+					<div className="addlabel-select-area">
+						<a onClick={() => addingHandler()} style={{ marginLeft: '5px' }}>
+							<i
+								className="fa-solid fa-plus fa-2xl"
+								style={{ color: '#db3dff' }}
+							></i>
+						</a>
+					</div>
+				)
+			) : null}
 		</div>
 	);
 };

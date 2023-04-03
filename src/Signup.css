@@ -49,3 +49,16 @@
 .already-register {
 	font-size: larger;
 }
+
+@media screen and (max-width: 768px) {
+	.signup-form {
+		flex-direction: column;
+		align-items: center;
+	}
+	.signup-form__input {
+		width: 250px;
+	}
+	.google-bton {
+		width: 200px;
+	}
+}

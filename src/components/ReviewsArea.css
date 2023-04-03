@@ -1,6 +1,9 @@
 .review-area {
 	padding: 10px 40px;
-	max-width: 990px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .review-item {
@@ -24,6 +27,7 @@
 
 .add-review-area {
 	display: flex;
+	flex: 1 1 100%;
 	flex-direction: row;
 	align-items: center;
 	margin-top: 20px;
@@ -67,4 +71,60 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+}
+.edit-container__textarea {
+	width: 800px;
+	max-width: 100%;
+	height: 60px;
+	border-radius: 5px;
+}
+
+.review-form-area {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	flex: 1 1 100%;
+}
+.review-form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+@media screen and (max-width: 768px) {
+	.review-area {
+		width: 100%;
+		padding: 0px;
+	}
+	.review-item {
+		padding: 10px 20px;
+	}
+	.review__text-input {
+		width: 100%;
+	}
+	.reviews-button-area {
+		justify-content: flex-start;
+	}
+	.reviews-button {
+		margin: 5px;
+	}
+	.save {
+		width: 80px;
+	}
+	.review-form-area {
+		flex-direction: column;
+		width: 90%;
+	}
+	.add-review-area {
+		flex-direction: column;
+	}
+	.review__text-input {
+		width: 90%;
+		max-width: 90%;
+		margin-left: 0px;
+		margin-bottom: 20px;
+	}
+	.edit-container__textarea {
+		width: 90%;
+		max-width: 90%;
+	}
 }

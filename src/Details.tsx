@@ -9,6 +9,7 @@ import MediaCardsGames from './components/MediaCardsGames';
 import MediaCardsMovies from './components/MediaCardsMovies';
 import { HeaderInDetails } from './components/HeaderInDetails';
 import './Details.css';
+import { Header } from './components/Header';
 
 const backendHost = import.meta.env.VITE_BE_HOST;
 
@@ -31,8 +32,8 @@ export const Details = () => {
 	}
 
 	return (
-		<>
-			<HeaderInDetails />
+		<div className="details-area">
+			<Header />
 
 			{story ? (
 				<div className="details-title-labels-container">
@@ -57,7 +58,7 @@ export const Details = () => {
 			) : null}
 			{story && <ReviewsArea story={story} />}
 			<Footer />
-		</>
+		</div>
 	);
 };
 
