@@ -82,49 +82,50 @@ const AddStory = () => {
 		<>
 			<Header />
 			<SearchToAddStory onSearch={handleSearch} />
-			{showLoading ? (
-				<ReactLoading
-					type={'spokes'}
-					color={'white'}
-					height={'40px'}
-					width={'40px'}
-					className="loading"
-				/>
-			) : (
-				<>
-					{story &&
-						(story.movies.length > 0 ? (
-							<>
-								<div className="addstory-container">
-									<h1 className="addstory-subtitle">
-										Help us check the story: {story.storyname}
-									</h1>
+				<div className='addstory'>
+					{showLoading ? (
+						<ReactLoading
+							type={'spokes'}
+							color={'white'}
+							height={'40px'}
+							width={'40px'}
+							className="loading"
+						/>
+					) : (
+						<>
+							{story &&
+								(story.movies.length > 0 ? (
+									<>
+										<div className="addstory-container">
+											<h1 className="addstory-subtitle">
+												Help us check the story: {story.storyname}
+											</h1>
 
-									<h1 className="addstory-subtitle">Movies found:</h1>
-									<MediaCardsMovies medias={story['movies']} />
-									<h1 className="addstory-subtitle">Books found:</h1>
-									<MediaCardsBooks medias={story['books']} />
-									<h1 className="addstory-subtitle">Games found:</h1>
-									<MediaCardsGames medias={story['games']} />
-									<div>
-										<a href={`/details/movies/${story.id}`}>
-											<button className="addstory-buttons">Save Story</button>
-										</a>
-										<button
-											className="addstory-buttons"
-											onClick={deleteStoryHandler}
-										>
-											Cancel
-										</button>
-									</div>
-								</div>
-							</>
-						) : (
-							<h4>Sorry not story found</h4>
-						))}
-				</>
-			)}
-
+											<h1 className="addstory-subtitle">Movies found:</h1>
+											<MediaCardsMovies medias={story['movies']} />
+											<h1 className="addstory-subtitle">Books found:</h1>
+											<MediaCardsBooks medias={story['books']} />
+											<h1 className="addstory-subtitle">Games found:</h1>
+											<MediaCardsGames medias={story['games']} />
+											<div>
+												<a href={`/details/movies/${story.id}`}>
+													<button className="addstory-buttons">Save Story</button>
+												</a>
+												<button
+													className="addstory-buttons"
+													onClick={deleteStoryHandler}
+												>
+													Cancel
+												</button>
+											</div>
+										</div>
+									</>
+								) : (
+									<h4>Sorry not story found</h4>
+								))}
+						</>
+					)}
+				</div>
 			<Footer />
 		</>
 	);
