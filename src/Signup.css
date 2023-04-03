@@ -1,6 +1,11 @@
+.signup-area {
+	display: flex;
+	flex-direction: column;
+}
+
 .signup-form {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-evenly;
 }
 .signup-form-login {
@@ -8,11 +13,9 @@
 	flex-direction: column;
 	align-items: center;
 }
-.signup-form__title {
-	font-size: 30px;
-}
+
 .signup-form__subtitle {
-	font-size: 20px;
+	font-size: 25px;
 	margin: 20px 0 20px 0;
 }
 .signup-form__container {
@@ -30,23 +33,12 @@
 }
 .google-form {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
-}
-.google-icon {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-}
-.google-bton {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 250px;
-	height: 50px;
-	margin: 5px;
 }
 
 .already-register {
+	margin-top: 50px;
 	font-size: larger;
 }
 

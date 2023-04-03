@@ -15,22 +15,21 @@ export const HeaderInDetails = () => {
 
 	return (
 		<>
-			<div className="header">
+			<div className="header header-indetail">
 				<h1 className="header-title">
 					<a href="/">Moboga</a>
 				</h1>
 
 				<div className='header_navbtns'>
-				<a href={'../movies/' + params.id} className={params.media === 'movies' ? 'specialbtn' : 'bn5'}>
-					<p className="bn5_textcontent">Movies</p>
-				</a>
-				<a href={'../books/' + params.id} className={params.media === 'books' ? 'specialbtn' : 'bn5'}>
-					<p className="bn5_textcontent">Books</p>
-				</a>
-				<a href={'../games/' + params.id} className={params.media === 'games' ? 'specialbtn' : 'bn5'}>
-					<p className="bn5_textcontent">Games</p>
-				</a>
-
+					<a href={'../movies/' + params.id} className={params.media === 'movies' ? 'specialbtn' : 'bn5'}>
+						<p className="bn5_textcontent">Movies</p>
+					</a>
+					<a href={'../books/' + params.id} className={params.media === 'books' ? 'specialbtn' : 'bn5'}>
+						<p className="bn5_textcontent">Books</p>
+					</a>
+					<a href={'../games/' + params.id} className={params.media === 'games' ? 'specialbtn' : 'bn5'}>
+						<p className="bn5_textcontent">Games</p>
+					</a>
 				</div>
 
 				{authenticated ? (

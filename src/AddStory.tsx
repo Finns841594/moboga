@@ -88,6 +88,7 @@ const AddStory = () => {
 					color={'white'}
 					height={'40px'}
 					width={'40px'}
+					className="loading"
 				/>
 			) : (
 				<>

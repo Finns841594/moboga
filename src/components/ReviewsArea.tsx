@@ -36,7 +36,7 @@ const ReviewsArea = ({ story }: ReviewsAreaProps) => {
 	return (
 		<div className="review-area">
 			{reviews.length > 0 ? (
-				<section>
+				<section className='review-area__existing-reviews'>
 					<h2 style={{ textAlign: 'left' }}>Reviews:</h2>
 					<ul>
 						{reviews.map((review: any) => {

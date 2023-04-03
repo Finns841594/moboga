@@ -18,65 +18,67 @@ export const Login = () => {
 	return (
 		<>
 			<Header />
-			<h3 className="signup-form__title">Login</h3>
-			<div className="signup-form-login">
-				<form onSubmit={handleSubmit}>
-					<div className="signup-form__container">
-						<label className="signup-form__label">
-							Email:
-							<input
-								className="signup-form__input"
-								required
-								type="email"
-								value={email}
-								onChange={e => {
-									setEmail(e.target.value);
-								}}
-								onFocus={e => {
-									setInvalidInput('');
-								}}
-							/>
-						</label>
-						<br />
+			<div className='signup-area'>
+				<h3 className="signup-form__subtitle">Login</h3>
+				<div className="signup-form-login">
+					<form onSubmit={handleSubmit}>
+						<div className="signup-form__container">
+							<label className="signup-form__label">
+								Email:
+								<input
+									className="signup-form__input"
+									required
+									type="email"
+									value={email}
+									onChange={e => {
+										setEmail(e.target.value);
+									}}
+									onFocus={e => {
+										setInvalidInput('');
+									}}
+								/>
+							</label>
+							<br />
 
-						<label className="signup-form__label">
-							Password:
-							<input
-								className="signup-form__input"
-								required
-								type="password"
-								value={password}
-								onChange={e => {
-									setPassword(e.target.value);
-								}}
-								onFocus={e => {
-									setInvalidInput('');
-								}}
-							/>
-						</label>
+							<label className="signup-form__label">
+								Password:
+								<input
+									className="signup-form__input"
+									required
+									type="password"
+									value={password}
+									onChange={e => {
+										setPassword(e.target.value);
+									}}
+									onFocus={e => {
+										setInvalidInput('');
+									}}
+								/>
+							</label>
+							<br />
+						</div>
+						{invalidInput && <p className="invalid-input">{invalidInput}</p>}
 						<br />
+						<button type="submit">Login</button>
+					</form>
+					<div className="google-form">
+						<h3 className="signup-form__subtitle">Login with Google</h3>
+						<GoogleLogin
+							text="continue_with"
+							onSuccess={(credentialResponse: any) => {
+								signInWithGoogle(credentialResponse.credential);
+							}}
+							onError={() => {
+								console.log('Login Failed');
+							}}
+						/>
 					</div>
-					{invalidInput && <p className="invalid-input">{invalidInput}</p>}
-					<br />
-					<button type="submit">Login</button>
-				</form>
-				<div className="google-form">
-					<h4 className="signup-form__subtitle">Login with Google</h4>
-					<GoogleLogin
-						text="continue_with"
-						onSuccess={(credentialResponse: any) => {
-							signInWithGoogle(credentialResponse.credential);
-						}}
-						onError={() => {
-							console.log('Login Failed');
-						}}
-					/>
 				</div>
+				<p className="already-register">
+					If you don't have an account
+					<Link to={'/register'}> Register here</Link>
+				</p>
 			</div>
-			<p className="already-register">
-				If you don't have an account
-				<Link to={'/register'}> Register here</Link>
-			</p>
 		</>
 	);
 };

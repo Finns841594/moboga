@@ -1,0 +1,32 @@
+.profile-area{
+  width: 80%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-area-title {
+	width: 100%;
+	margin-bottom: 30px;
+	font-size: 30px;
+}
+.profile-review-section {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+
+}
+
+.profile-area__review-section{
+  width: 80%;
+}
+@media screen and (max-width: 768px) {
+	.profile-area {
+		margin: 0;
+	}
+	.profile-area-title {
+		width: 100%;
+		margin: 0;
+		font-size: 25px;
+	}
+}

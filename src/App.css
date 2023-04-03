@@ -13,9 +13,16 @@
 	border-radius: 10px;
 }
 
+#sample {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
 #bubbleDiagram {
 	background-color: #242424;
-	width: 1000px;
+	width: 80%;
 	height: 700px;
 	position: relative;
 	cursor: auto;
@@ -87,7 +94,8 @@
 .home-label-card-list {
 	list-style: none;
 	text-align: center;
-	height: 250px;
+	text-shadow: 1px 1px 2px #242424;
+	background-color: #2424243b;
 	overflow: hidden;
 	cursor: pointer;
 	font-size: larger;
@@ -99,7 +107,6 @@
 }
 .home-label-card-item a {
 	color: white;
-	text-shadow: 1px 1px 2px #242424;
 }
 .media-card-list.open {
 	max-height: 300px;
@@ -110,6 +117,11 @@
 	font-size: 20px;
 	margin: 0px;
 	padding: 0;
+}
+
+.loading {
+	justify-self: center;
+	align-self: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -137,7 +149,29 @@
 		height: 400px;
 		padding-inline: 20px;
 	}
+	.home-label-card-list {
+		max-height: 300px;
+		overflow-y: scroll;
+	}
 	.home-label-card-item {
 		font-size: smaller;
+	}
+	#bubbleDiagram {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.header{
+		width:90%
+	}
+	.footer-container{
+		width:90%
+	}
+	.details-title-labels-container{
+		width:90%
+	}
+	.home-container{
+		width: 100%;
 	}
 }

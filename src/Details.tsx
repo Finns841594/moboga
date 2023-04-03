@@ -33,7 +33,7 @@ export const Details = () => {
 
 	return (
 		<div className="details-area">
-			<Header />
+			<HeaderInDetails />
 
 			{story ? (
 				<div className="details-title-labels-container">

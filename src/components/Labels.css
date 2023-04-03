@@ -84,4 +84,7 @@
 		margin-inline: 5px;
 		font-size: smaller;
 	}
+	.labels-list_item {
+		margin-bottom: 10px;
+	}
 }

@@ -70,7 +70,7 @@ function useAuth() {
 					password,
 				})
 				.then(res => res);
-			if (response.status === 200) {
+			if (response.status === 201) {
 				localStorage.setItem('token', response.data);
 				setAuthenticated(true);
 				navigate('/');

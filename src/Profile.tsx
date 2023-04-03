@@ -5,6 +5,7 @@ import useAuth from './useAuth';
 import { getReviewsByUserId } from './api';
 import { Reviewtype } from './types';
 import { ReviewProfile } from './components/ReviewProfile';
+import './Profile.css';
 
 export const Profile = () => {
 	const { authenticated, isAuthenticated, user } = useAuth();
@@ -35,11 +36,11 @@ export const Profile = () => {
 			{authenticated && (
 				<>
 					<Header />
-					<div className="" style={{ marginTop: '40px' }}>
-						<h2 style={{ textAlign: 'left', marginBottom: '30px' }}>
+					<div className="profile-area" style={{ marginTop: '40px' }}>
+						<h2 className="profile-area__title" style={{ textAlign: 'left', marginBottom: '30px' }}>
 							Manage your reviews:
 						</h2>
-						<section style={{ alignContent: 'center' }}>
+						<section className='profile-area__review-section' style={{ alignContent: 'center' }}>
 							{reviews.length > 0 ? (
 								<ul style={{ padding: 0 }}>
 									{reviews.map((review: any) => {

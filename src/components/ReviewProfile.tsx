@@ -33,7 +33,7 @@ export const ReviewProfile = ({
 	}, [newContent]);
 
 	return (
-		<section>
+		<section className='review-profile-area'>
 			<li className="review-item" key={reviewId}>
 				<div className="review-item__title">
 					<h4>{storyName}</h4>
