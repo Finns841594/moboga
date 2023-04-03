@@ -33,3 +33,23 @@
 	overflow: scroll;
 	text-align: left;
 }
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.image-container:hover .hover-button {
+  display: block;
+}

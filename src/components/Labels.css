@@ -1,3 +1,8 @@
+.labels-intro {
+  text-align: left;
+  margin-left: 10px;
+}
+
 .labels-list {
   display: flex;
   flex-direction: row;
@@ -13,6 +18,18 @@
   border: 2px solid #eaeaea;
   border-radius: 10px;
   padding: 5px 10px;
+}
+
+.labels_addbar {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  margin: 0 10px;
+  font-size: larger;
+  padding: 0 10px;
+  background-color: transparent;
+  color: #eaeaea;
 }
 
 .remove-button {

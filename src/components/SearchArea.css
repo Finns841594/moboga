@@ -25,6 +25,8 @@
 	margin: 0;
 	overflow-y: scroll;
 	list-style: none;
+	max-height: 600px;
+	overflow: scroll;
 }
 .search__list-item {
 	padding: 5px;

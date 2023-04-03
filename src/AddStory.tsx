@@ -25,7 +25,7 @@ const AddStory = () => {
     const story = fetch(backendHost + `api/stories/` + storyName, {method: 'POST'})
       .then(res => res.json())
       .then(results => {
-        console.log('🤪 results:', results.ops[0].id)
+        console.log('🤪 results:', results)
         return results.ops[0]}) as Promise<StoryObj>;
     return story;
   }
