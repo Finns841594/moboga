@@ -20,12 +20,14 @@ export const Footer = () => {
 							<img className="github-logo" src={GithubLogo} />
 						</a>
 						<p className="">Feng</p>
+						<a href="https://www.linkedin.com/in/feng-yang-511361166/">LinkedIn</a>
 					</span>
 					<span className="github-profile-container">
 						<a href="https://github.com/mariana-molina">
 							<img className="github-logo" src={GithubLogo} />
 						</a>
 						<p className="">Mariana</p>
+						<a href="https://www.linkedin.com/in/marianasoledadmolina">LinkedIn</a>
 					</span>
 				</div>
 			</div>
