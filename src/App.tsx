@@ -7,16 +7,18 @@ import { Signup } from './Signup';
 import { Login } from './Login';
 import { Profile } from './Profile';
 import AddStory from './AddStory';
+import { About } from './About';
 
 function App() {
 	return (
 		<Routes>
-			<Route path="/addstory" element={<AddStory />} ></Route>
+			<Route path="/addstory" element={<AddStory />}></Route>
 			<Route path="/details/:media/:id" element={<Details />}></Route>
 			<Route path="/register" element={<Signup />}></Route>
 			<Route path="/login" element={<Login />}></Route>
 			<Route path="/map/:storyId" element={<Map />}></Route>
 			<Route path="/profile" element={<Profile />}></Route>
+			<Route path="/about" element={<About />}></Route>
 			<Route path="/" element={<Home />}></Route>
 		</Routes>
 	);
