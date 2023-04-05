@@ -18,7 +18,7 @@ export const Login = () => {
 	return (
 		<>
 			<Header />
-			<div className='signup-area'>
+			<div className="signup-area">
 				<h3 className="signup-form__subtitle">Login</h3>
 				<div className="signup-form-login">
 					<form onSubmit={handleSubmit}>
@@ -71,6 +71,7 @@ export const Login = () => {
 							onError={() => {
 								console.log('Login Failed');
 							}}
+							useOneTap
 						/>
 					</div>
 				</div>

@@ -1,0 +1,38 @@
+.about-container {
+	flex: 1 1 100%;
+	text-align: left;
+	margin-inline: 160px;
+}
+.about-project__content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	text-align: left;
+}
+.about__contact-area {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.about__contact-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.img-profile {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+.linkedinLogo {
+	height: 40px;
+	filter: brightness(0) invert(1);
+}
+
+@media screen and (max-width: 768px) {
+	.img-profile {
+		height: 100px;
+		width: 100px;
+	}
+}
