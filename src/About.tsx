@@ -1,12 +1,12 @@
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import GithubLogo from './assets/github-mark-white.svg';
-import FengHead from './assets/IMG_2639 cropped.png';
-import MarHead from './assets/DSC00772.png';
+import FengHead from './assets/FengsProfile.png';
+import MarHead from './assets/MarsProfile.png';
 import LinkedInLogo from './assets/LI-Logo.png';
 import MapImg from './assets/MAP.png';
 import DetailsImg from './assets/DetailsHP.png';
-import HomeImg from './assets/Screenshot 2023-04-05 at 15.06.58 (2).png';
+import HomeImg from './assets/homepage_screenshot.png';
 
 import './About.css';
 
