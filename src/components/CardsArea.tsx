@@ -14,7 +14,7 @@ export const CardsArea = ({ stories }: CardsAreaProps) => {
 		'https://media.wired.com/photos/633c95ef85e7a4cc2f802256/master/w_2560%2Cc_limit/Breath-of-the-Wild-Casual-Gamer-Culture.jpg',
 		'https://hips.hearstapps.com/hmg-prod/images/mv5bmtg4oda3mjyym15bml5banbnxkftztcwmtuxodcwngatat-v1-sx1663-cr0-0-1663-999-al-1589923290.jpg',
 		'https://m.media-amazon.com/images/I/81GG9szllnL.jpg',
-		'https://www.komar.de/en/media/catalog/product/cache/5/image/9df78eab33525d08d6e5fb8d27136e95/4/-/4-4124_avengers_movie_poster_web.jpg',
+		'https://upload.wikimedia.org/wikipedia/en/3/35/Supermanflying.png',
 	];
 
 	let labelCardObjs: LabelCardObj[] = [];
